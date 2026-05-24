@@ -1,0 +1,12 @@
+[
+    { "title": "Claude with the Anthropic API",        "issuer": "Anthropic",           "date": "MAR 2026",  "icon": "🤖", "src": "certs/Certificate(Claude_API).pdf" },
+    { "title": "Claude Code in Action",                "issuer": "Anthropic",           "date": "MAR 2026",  "icon": "⚡", "src": "" },
+    { "title": "Python Essentials 1 & 2",              "issuer": "Cisco / OpenEdg",     "date": "MAR 2026",  "icon": "🐍", "src": "" },
+    { "title": "Generative AI Fluency",                "issuer": "NASSCOM FutureSkills","date": "MAR 2026",  "icon": "🚀", "src": "" },
+    { "title": "AWS Generative AI & ML Fundamentals",  "issuer": "Amazon Web Services", "date": "JUL 2025",  "icon": "☁️", "src": "certs/Certificate(AWS).pdf" },
+    { "title": "Introduction to Generative AI Studio", "issuer": "Google Cloud",        "date": "DEC 2025",  "icon": "🔮", "src": "certs/Certificate(Introduction_to_AI&ML_on_google_cloud).pdf" },
+    { "title": "Threat Intelligence and Hunting",      "issuer": "IBM SkillsBuild",     "date": "DEC 2025",  "icon": "🛡️", "src": "" },
+    { "title": "Yuva AI for All",                      "issuer": "NASSCOM FutureSkills","date": "DEC 2025",  "icon": "🌐", "src": "" },
+    { "title": "Python for Beginners",                 "issuer": "Simplilearn SkillUp", "date": "",          "icon": "🐍", "src": "" },
+    { "title": "Introduction to C++",                  "issuer": "Simplilearn SkillUp", "date": "MAY 2024",  "icon": "💻", "src": "" }
+]

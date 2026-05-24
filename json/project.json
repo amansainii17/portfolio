@@ -1,0 +1,24 @@
+[
+    {
+        "name": "ExamForge",
+        "description": "An AI-powered exam paper generator web app featuring a multi-step wizard for academic paper creation, PDF/DOCX export, and JWT-based role-aware authentication for faculty and admins.",
+        "html_url": "#",
+        "language": "Python",
+        "topics": ["flask", "python", "ai", "jwt", "pdf", "featured"],
+        "features": ["Dashboard with stats", "Multi-step paper wizard", "PDF & DOCX export", "Admin panel", "AI paper generation", "Role-based access"],
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "mission": "01"
+    },
+    {
+        "name": "Language Translator",
+        "description": "A Python application enabling real-time translation between multiple languages using the Google Translate API, featuring a clean interactive interface with robust error handling for invalid inputs.",
+        "html_url": "#",
+        "language": "Python",
+        "topics": ["python", "google-translate", "api", "featured"],
+        "features": ["Multi-language support", "Real-time translation", "Error handling", "Interactive UI"],
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "mission": "02"
+    }
+]

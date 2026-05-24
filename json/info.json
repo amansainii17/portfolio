@@ -1,0 +1,117 @@
+{
+    "name": "Aman Saini",
+    "position": "Developer & AI Builder",
+    "des": [
+        "CSE student at Sage University Indore (2023–2027), building AI-powered web apps.",
+        "Exploring the intersection of machine learning and full-stack development.",
+        "Currently leveling up in Python, React, and Generative AI."
+    ],
+    "experience": "Fresher",
+    "projects-shipped": "2+",
+    "internships": "3+",
+    "certificates": "10+",
+    "grad-year": "2027",
+    "skills": [
+        "Python", "JavaScript", "C++", "React.js", "HTML", "CSS",
+        "Flask", "MySQL", "SQLite", "Git", "GitHub", "AWS", "Generative AI"
+    ],
+    "location": [
+        "Indore, Madhya Pradesh, India",
+        "UTC +5:30"
+    ],
+    "education": [
+        "B.Tech Computer Science & Engineering (2023 - 2027)",
+        "Sage University Indore"
+    ],
+    "languages": [
+        "English (Fluent)",
+        "Hindi (Native)"
+    ],
+    "contact": {
+        "email": "aman.saini17072003@gmail.com",
+        "phone": "+91-9584285241",
+        "linkedin": "",
+        "github": ""
+    },
+    "tags": [
+        "Developer",
+        "AI Builder",
+        "Problem Solver",
+        "Open to Work"
+    ],
+    "article": {
+        "para1": "I am a CSE student with a strong interest in building AI-powered web applications and exploring the intersection of machine learning and full-stack development. I enjoy working on real-world problems and turning ideas into functional products.",
+        "para2": "My experience spans developing AI exam generators, language translation tools, and web applications. I continuously explore new technologies and improve my skills through internships, projects, and certifications in AI, cloud, and web development."
+    },
+    "skill-deep": [
+        { "skill": "Python",      "lvl": "Advanced",     "pro": 4, "years": "2+ years", "pct": 82 },
+        { "skill": "JavaScript",  "lvl": "Intermediate", "pro": 3, "years": "1-2 years", "pct": 70 },
+        { "skill": "C++",         "lvl": "Intermediate", "pro": 3, "years": "1-2 years", "pct": 65 },
+        { "skill": "React.js",    "lvl": "Beginner",     "pro": 2, "years": "< 1 year",  "pct": 60 },
+        { "skill": "HTML / CSS",  "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 78 },
+        { "skill": "Gen AI / ML", "lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 55 }
+    ],
+    "career-history": [
+        {
+            "position": "Web Development Intern",
+            "company": "ApexPlanet Software Pvt. Ltd.",
+            "date": "DEC 2025 — FEB 2026",
+            "des": "Virtual internship covering full front-end web development using HTML, CSS, and JavaScript. Built practical projects during the 10-week program.",
+            "work": [
+                "Built multiple front-end web projects",
+                "Worked with HTML, CSS, and JavaScript",
+                "Completed 10-week virtual program"
+            ]
+        },
+        {
+            "position": "AI & ML Virtual Intern",
+            "company": "AICTE–EduSkills × Google for Developers",
+            "date": "2024 — 2025 (10 WEEKS)",
+            "des": "Gained hands-on experience in machine learning concepts and applications through this government-backed virtual internship program supported by Google for Developers.",
+            "work": [
+                "Hands-on ML concepts and applications",
+                "Government-backed program with Google support",
+                "10-week intensive virtual internship"
+            ]
+        },
+        {
+            "position": "AWS Cloud Foundations Intern",
+            "company": "SAGE University Indore",
+            "date": "JULY 2025 (15 DAYS)",
+            "des": "Completed an intensive 15-day internship covering core AWS Cloud concepts, services, and architecture fundamentals.",
+            "work": [
+                "Core AWS Cloud concepts & services",
+                "Cloud architecture fundamentals",
+                "15-day intensive on-site program"
+            ]
+        }
+    ],
+    "terminal": {
+        "whoami": "Aman Saini, Developer & AI Builder",
+        "skill": [
+            "Python, JavaScript, React.js, Flask",
+            "HTML, CSS, Gen AI, AWS, Git"
+        ],
+        "stat": [
+            "3+ internships completed",
+            "10+ certifications earned",
+            "2 projects shipped"
+        ],
+        "hire-me": [
+            "✓ Open to internships",
+            "✓ Available for collaborations",
+            "✓ Active learner & builder"
+        ],
+        "animation-tag": [
+            "cd ~/projects",
+            "python run_ai.py",
+            "git push origin main",
+            "npm start"
+        ]
+    },
+    "let-work": {
+        "des": "Currently a 2nd-year CSE student at Sage University Indore. Open to internship opportunities, project collaborations, and connecting with developers and AI enthusiasts.",
+        "email": "aman.saini17072003@gmail.com"
+    },
+    "resume": "./resume/resume.pdf"
+}

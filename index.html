@@ -1,1 +1,267 @@
-aman saini portfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Saini — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">AMAN<span>_</span>SAINI</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--green);letter-spacing:1px;">
+      <span class="nav-dot"></span>Available for Hire
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-tag">PLAYER ONE — INITIALIZING</div>
+    <h1 class="hero-name"><span class="accent">AMAN</span><br>SAINI</h1>
+    <div class="hero-role">// DEVELOPER &amp; AI BUILDER</div>
+    <p class="hero-bio">CSE student at Sage University Indore (2023–2027), building AI-powered web apps. Exploring the intersection of machine learning and full-stack development. Currently leveling up in Python, React, and Generative AI.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">3+</span><span class="stat-label">Internships</span></div>
+      <div><span class="stat-num">10+</span><span class="stat-label">Certificates</span></div>
+      <div><span class="stat-num">2+</span><span class="stat-label">Projects</span></div>
+      <div><span class="stat-num">2027</span><span class="stat-label">Grad Year</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-p">VIEW PROJECTS</a>
+      <a href="#contact" class="btn-s">CONTACT ME</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-hdr">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">SKILL <span class="accent">TREE</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="xp-wrap" id="xp-wrap">
+      <div class="xp-row"><span class="xp-lbl">Python</span><div class="xp-track"><div class="xp-fill" data-w="82" style="width:0%"></div></div><span class="xp-pct">82%</span></div>
+      <div class="xp-row"><span class="xp-lbl">JavaScript</span><div class="xp-track"><div class="xp-fill" data-w="70" style="width:0%"></div></div><span class="xp-pct">70%</span></div>
+      <div class="xp-row"><span class="xp-lbl">C++</span><div class="xp-track"><div class="xp-fill" data-w="65" style="width:0%"></div></div><span class="xp-pct">65%</span></div>
+      <div class="xp-row"><span class="xp-lbl">React.js</span><div class="xp-track"><div class="xp-fill" data-w="60" style="width:0%"></div></div><span class="xp-pct">60%</span></div>
+      <div class="xp-row"><span class="xp-lbl">HTML / CSS</span><div class="xp-track"><div class="xp-fill" data-w="78" style="width:0%"></div></div><span class="xp-pct">78%</span></div>
+      <div class="xp-row"><span class="xp-lbl">Gen AI / ML</span><div class="xp-track"><div class="xp-fill" data-w="55" style="width:0%"></div></div><span class="xp-pct">55%</span></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-cat">Languages</div><div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">JavaScript</span></div></div>
+      <div class="skill-card"><div class="skill-cat">Web Tech</div><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">React.js</span><span class="tag">Flask</span></div></div>
+      <div class="skill-card"><div class="skill-cat">Databases</div><div class="tags"><span class="tag">MySQL</span><span class="tag">SQLite</span></div></div>
+      <div class="skill-card"><div class="skill-cat">Tools</div><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">Linux</span><span class="tag">AWS</span></div></div>
+      <div class="skill-card"><div class="skill-cat">AI / ML</div><div class="tags"><span class="tag">Generative AI</span><span class="tag">ML Concepts</span><span class="tag">Claude API</span><span class="tag">Qwen / Llama</span></div></div>
+      <div class="skill-card"><div class="skill-cat">Cloud</div><div class="tags"><span class="tag">AWS Cloud</span><span class="tag">Google Cloud</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="sec-hdr">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">MISSION <span class="accent">LOG</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-num">01</div>
+        <div class="proj-lbl">MISSION 01 — COMPLETED ✓</div>
+        <div class="proj-title">ExamForge</div>
+        <p class="proj-desc">An AI-powered exam paper generator featuring a multi-step wizard, PDF/DOCX export, and JWT-based role-aware authentication for faculty and admins.</p>
+        <div class="proj-tech">
+          <span class="badge">Python Flask</span><span class="badge">SQLite</span><span class="badge">HTML/CSS/JS</span><span class="badge">Qwen</span><span class="badge">Llama</span><span class="badge">JWT Auth</span>
+        </div>
+        <ul class="proj-feats">
+          <li>Dashboard with stats</li><li>Multi-step wizard</li><li>PDF &amp; DOCX export</li><li>Admin panel</li><li>AI generation</li><li>Role-based access</li>
+        </ul>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">02</div>
+        <div class="proj-lbl">MISSION 02 — COMPLETED ✓</div>
+        <div class="proj-title">Language Translator</div>
+        <p class="proj-desc">A Python application enabling real-time translation between multiple languages using Google Translate API with robust error handling.</p>
+        <div class="proj-tech">
+          <span class="badge">Python</span><span class="badge">Google Translate API</span>
+        </div>
+        <ul class="proj-feats">
+          <li>Multi-language support</li><li>Real-time translation</li><li>Error handling</li><li>Interactive UI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-hdr">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">QUEST <span class="accent">HISTORY</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">DEC 2025 — FEB 2026</div>
+          <div class="tl-title">Web Development Intern</div>
+          <div class="tl-org">ApexPlanet Software Pvt. Ltd.</div>
+          <p class="tl-desc">Virtual internship covering full front-end web development using HTML, CSS, and JavaScript. Built practical projects during the 10-week program.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024 — 2025 (10 WEEKS)</div>
+          <div class="tl-title">AI &amp; ML Virtual Intern</div>
+          <div class="tl-org">AICTE–EduSkills × Google for Developers</div>
+          <p class="tl-desc">Hands-on machine learning experience through this government-backed virtual internship supported by Google for Developers.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">JULY 2025 (15 DAYS)</div>
+          <div class="tl-title">AWS Cloud Foundations Intern</div>
+          <div class="tl-org">SAGE University Indore</div>
+          <p class="tl-desc">Intensive 15-day internship covering core AWS Cloud concepts, services, and architecture fundamentals.</p>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--t2);margin-bottom:16px;">[ TERMINAL ]</div>
+        <div class="terminal">
+          <div class="t-bar"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div><span style="margin-left:10px;font-size:10px;color:var(--t2);letter-spacing:2px;">portfolio ~ $</span></div>
+          <div class="t-body">
+            <div><span class="t-prompt">→ </span><span class="t-cmd">whoami</span></div>
+            <span class="t-out">Aman Saini, Developer &amp; AI Builder</span>
+            <br>
+            <div><span class="t-prompt">→ </span><span class="t-cmd">skills --top</span></div>
+            <span class="t-out">Python, JavaScript, React.js, Flask</span>
+            <span class="t-out">HTML, CSS, Gen AI, AWS, Git</span>
+            <br>
+            <div><span class="t-prompt">→ </span><span class="t-cmd">git log --stat</span></div>
+            <span class="t-out">3+ internships completed</span>
+            <span class="t-out">10+ certifications earned</span>
+            <span class="t-out">2 projects shipped</span>
+            <br>
+            <div><span class="t-prompt">→ </span><span class="t-cmd">npm run hire-me</span></div>
+            <span class="t-out">✓ Open to internships</span>
+            <span class="t-out">✓ Available for collaborations</span>
+            <span class="t-out">✓ Active learner &amp; builder</span>
+            <br>
+            <div><span class="t-prompt">→ </span><span class="t-cmd" id="tcmd"></span><span class="t-cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="container">
+    <div class="sec-hdr">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">ACHIEVEMENT <span class="accent">UNLOCKED</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-item"><div class="cert-icon">🤖</div><div><div class="cert-name">Claude with the Anthropic API</div><div class="cert-issuer">Anthropic — Mar 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">⚡</div><div><div class="cert-name">Claude Code in Action</div><div class="cert-issuer">Anthropic — Mar 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🐍</div><div><div class="cert-name">Python Essentials 1 &amp; 2</div><div class="cert-issuer">Cisco / OpenEdg — Mar 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🚀</div><div><div class="cert-name">Generative AI Fluency</div><div class="cert-issuer">NASSCOM FutureSkills — Mar 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">☁️</div><div><div class="cert-name">AWS Generative AI &amp; ML Fundamentals</div><div class="cert-issuer">Amazon Web Services — Jul 2025</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🔮</div><div><div class="cert-name">Introduction to Generative AI Studio</div><div class="cert-issuer">Google Cloud — Dec 2025</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🛡️</div><div><div class="cert-name">Threat Intelligence and Hunting</div><div class="cert-issuer">IBM SkillsBuild — Dec 2025</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🌐</div><div><div class="cert-name">Yuva AI for All</div><div class="cert-issuer">NASSCOM FutureSkills — Dec 2025</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🐍</div><div><div class="cert-name">Python for Beginners</div><div class="cert-issuer">Simplilearn SkillUp</div></div></div>
+      <div class="cert-item"><div class="cert-icon">💻</div><div><div class="cert-name">Introduction to C++</div><div class="cert-issuer">Simplilearn SkillUp — May 2024</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-hdr">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">SEND <span class="accent">MESSAGE</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">Currently a 2nd-year CSE student at Sage University Indore. Open to internship opportunities, project collaborations, and connecting with developers and AI enthusiasts.</p>
+        <div class="c-links">
+          <a class="c-link" href="mailto:aman.saini17072003@gmail.com"><div class="c-icon">✉</div>aman.saini17072003@gmail.com</a>
+          <a class="c-link" href="tel:+919584285241"><div class="c-icon">📞</div>+91-9584285241</a>
+          <a class="c-link" href="#"><div class="c-icon">📍</div>Indore, Madhya Pradesh, India</a>
+        </div>
+      </div>
+      <div class="status-panel">
+        <div class="s-row"><span class="s-key">STATUS</span><span class="s-val g"><span class="online-dot"></span>ONLINE</span></div>
+        <div class="s-row"><span class="s-key">ROLE</span><span class="s-val">CSE STUDENT</span></div>
+        <div class="s-row"><span class="s-key">LOCATION</span><span class="s-val">INDORE, MP</span></div>
+        <div class="s-row"><span class="s-key">LEVEL</span><span class="s-val o">2ND YEAR BTech</span></div>
+        <div class="s-row"><span class="s-key">LANGUAGES</span><span class="s-val">HINDI · ENGLISH</span></div>
+        <div class="s-row"><span class="s-key">LOOKING FOR</span><span class="s-val g">OPEN TO WORK</span></div>
+        <div class="s-row"><span class="s-key">GRAD YEAR</span><span class="s-val">2027</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 AMAN_SAINI.EXE — ALL RIGHTS RESERVED — MADE WITH ♥ IN INDORE</p>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const el=document.querySelector(a.getAttribute('href'));
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// XP bars on scroll
+const xpObs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.querySelectorAll('.xp-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});
+      xpObs.unobserve(en.target);
+    }
+  });
+},{threshold:0.2});
+xpObs.observe(document.getElementById('xp-wrap'));
+
+// Typing
+const cmds=['cd ~/projects','python run_ai.py','git push origin main','npm start'];
+let ci=0,ch=0;
+const el=document.getElementById('tcmd');
+function type(){
+  const c=cmds[ci%cmds.length];
+  if(ch<=c.length){el.textContent=c.slice(0,ch++);setTimeout(type,80);}
+  else{setTimeout(()=>{ci++;ch=0;el.textContent='';type();},2000);}
+}
+type();
+</script>
+</body>
+</html>
