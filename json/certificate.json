@@ -7,25 +7,18 @@
     "src": "certs/Certificate(Claude_API).pdf"
   },
   {
-    "title": "Model Context Protocol Advanced",
-    "issuer": "Anthropic",
-    "date": "MAR 2026",
-    "icon": "\u26a1",
-    "src": "certs/Certificate(Model_Context_Protocol)Adv.pdf"
-  },
-  {
     "title": "Claude Code in Action",
     "issuer": "Anthropic",
     "date": "MAR 2026",
     "icon": "\ud83d\udcbb",
-    "src": "certs/Certificate(Skilljar2).pdf"
+    "src": "certs/Certificate(Claude_Code_Action).pdf"
   },
   {
-    "title": "Anthropic Completion Certificate",
+    "title": "Claude 101",
     "issuer": "Anthropic",
     "date": "MAR 2026",
-    "icon": "\ud83c\udf93",
-    "src": "certs/Certificate(Skilljar3).pdf"
+    "icon": "\u26a1",
+    "src": "certs/Certificate(Claude_101).pdf"
   },
   {
     "title": "Python Essentials 1",
