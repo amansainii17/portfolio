@@ -1,12 +1,121 @@
 [
-    { "title": "Claude with the Anthropic API",        "issuer": "Anthropic",           "date": "MAR 2026",  "icon": "🤖", "src": "certs/Certificate(Claude_API).pdf" },
-    { "title": "Claude Code in Action",                "issuer": "Anthropic",           "date": "MAR 2026",  "icon": "⚡", "src": "" },
-    { "title": "Python Essentials 1 & 2",              "issuer": "Cisco / OpenEdg",     "date": "MAR 2026",  "icon": "🐍", "src": "" },
-    { "title": "Generative AI Fluency",                "issuer": "NASSCOM FutureSkills","date": "MAR 2026",  "icon": "🚀", "src": "" },
-    { "title": "AWS Generative AI & ML Fundamentals",  "issuer": "Amazon Web Services", "date": "JUL 2025",  "icon": "☁️", "src": "certs/Certificate(AWS).pdf" },
-    { "title": "Introduction to Generative AI Studio", "issuer": "Google Cloud",        "date": "DEC 2025",  "icon": "🔮", "src": "certs/Certificate(Introduction_to_AI&ML_on_google_cloud).pdf" },
-    { "title": "Threat Intelligence and Hunting",      "issuer": "IBM SkillsBuild",     "date": "DEC 2025",  "icon": "🛡️", "src": "" },
-    { "title": "Yuva AI for All",                      "issuer": "NASSCOM FutureSkills","date": "DEC 2025",  "icon": "🌐", "src": "" },
-    { "title": "Python for Beginners",                 "issuer": "Simplilearn SkillUp", "date": "",          "icon": "🐍", "src": "" },
-    { "title": "Introduction to C++",                  "issuer": "Simplilearn SkillUp", "date": "MAY 2024",  "icon": "💻", "src": "" }
+  {
+    "title": "Claude with the Anthropic API",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "\ud83e\udd16",
+    "src": "certs/Certificate(Claude_API).pdf"
+  },
+  {
+    "title": "Model Context Protocol Advanced",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "\u26a1",
+    "src": "certs/Certificate(Model_Context_Protocol)Adv.pdf"
+  },
+  {
+    "title": "Python Essentials 2",
+    "issuer": "Cisco / OpenEdg",
+    "date": "MAR 2026",
+    "icon": "\ud83d\udc0d",
+    "src": "certs/Certificate(PythonEssentials2).pdf"
+  },
+  {
+    "title": "AWS Generative AI & ML Fundamentals",
+    "issuer": "Amazon Web Services",
+    "date": "JUL 2025",
+    "icon": "\u2601\ufe0f",
+    "src": "certs/Certificate(AWS).pdf"
+  },
+  {
+    "title": "AWS Cloud Quest \u2014 Generative AI",
+    "issuer": "Amazon Web Services",
+    "date": "2025",
+    "icon": "\ud83c\udfae",
+    "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"
+  },
+  {
+    "title": "AWS Cloud Foundations Internship",
+    "issuer": "SAGE University",
+    "date": "JUL 2025",
+    "icon": "\ud83c\udfeb",
+    "src": "certs/Certificate(AWS_Internship).pdf"
+  },
+  {
+    "title": "Introduction to AI & ML on Google Cloud",
+    "issuer": "Google Cloud",
+    "date": "DEC 2025",
+    "icon": "\ud83d\udd2e",
+    "src": "certs/Certificate(Introduction_to_AI&ML_on_google_cloud).pdf"
+  },
+  {
+    "title": "Generative AI Certificate",
+    "issuer": "NASSCOM FutureSkills",
+    "date": "DEC 2025",
+    "icon": "\ud83d\ude80",
+    "src": "certs/Certificate(GenerativeAI).pdf"
+  },
+  {
+    "title": "Red Hat System Administration II (RH134)",
+    "issuer": "Red Hat",
+    "date": "DEC 2025",
+    "icon": "\ud83c\udfa9",
+    "src": "certs/Certificate(RedHat_RH134).pdf"
+  },
+  {
+    "title": "Getting Started with Threat Intelligence",
+    "issuer": "IBM SkillsBuild",
+    "date": "DEC 2025",
+    "icon": "\ud83d\udee1\ufe0f",
+    "src": "certs/Certificate(IBM_ThreatIntelligence).pdf"
+  },
+  {
+    "title": "MS Excel Powered by Microsoft",
+    "issuer": "Simplilearn",
+    "date": "DEC 2025",
+    "icon": "\ud83d\udcca",
+    "src": "certs/Certificate(Simplilearn_Microsoft).pdf"
+  },
+  {
+    "title": "Web Development Internship",
+    "issuer": "ApexPlanet Software",
+    "date": "FEB 2026",
+    "icon": "\ud83d\udcbc",
+    "src": "certs/Internship(ApexPlanet).pdf"
+  },
+  {
+    "title": "AI-ML Virtual Internship",
+    "issuer": "AICTE \u00d7 Google",
+    "date": "MAR 2026",
+    "icon": "\ud83e\udde0",
+    "src": "certs/Internship(AICTE_AIML).pdf"
+  },
+  {
+    "title": "India AI Impact Buildathon",
+    "issuer": "India AI",
+    "date": "2025",
+    "icon": "\ud83c\udfc6",
+    "src": "certs/Certificate(india_AI_Impact_buildathon).pdf"
+  },
+  {
+    "title": "Internship \u2014 Code Alpha",
+    "issuer": "Code Alpha",
+    "date": "2025",
+    "icon": "\ud83d\udcbb",
+    "src": "certs/Internship(code_alpha).pdf"
+  },
+  {
+    "title": "Internship \u2014 Python Full Stack Developer",
+    "issuer": "Training Provider",
+    "date": "2025",
+    "icon": "\ud83d\udc0d",
+    "src": "certs/internship(Python_Fullstack_Developer).pdf"
+  },
+  {
+    "title": "Introduction to C++",
+    "issuer": "Simplilearn SkillUp",
+    "date": "MAY 2024",
+    "icon": "\u2328\ufe0f",
+    "src": "certs/Certificate(Cpp).pdf"
+  }
 ]
