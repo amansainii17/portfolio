@@ -42,13 +42,6 @@
     "src": "certs/Certificate(AWS_Internship).pdf"
   },
   {
-    "title": "Introduction to AI & ML on Google Cloud",
-    "issuer": "Google Cloud",
-    "date": "DEC 2025",
-    "icon": "\ud83d\udd2e",
-    "src": "certs/Certificate(Introduction_to_AI&ML_on_google_cloud).pdf"
-  },
-  {
     "title": "Generative AI Certificate",
     "issuer": "NASSCOM FutureSkills",
     "date": "DEC 2025",
@@ -89,20 +82,6 @@
     "date": "MAR 2026",
     "icon": "\ud83e\udde0",
     "src": "certs/Internship(AICTE_AIML).pdf"
-  },
-  {
-    "title": "India AI Impact Buildathon",
-    "issuer": "India AI",
-    "date": "2025",
-    "icon": "\ud83c\udfc6",
-    "src": "certs/Certificate(india_AI_Impact_buildathon).pdf"
-  },
-  {
-    "title": "Internship \u2014 Code Alpha",
-    "issuer": "Code Alpha",
-    "date": "2025",
-    "icon": "\ud83d\udcbb",
-    "src": "certs/Internship(code_alpha).pdf"
   },
   {
     "title": "Internship \u2014 Python Full Stack Developer",
