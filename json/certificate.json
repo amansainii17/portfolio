@@ -14,32 +14,32 @@
     "src": "certs/Certificate(Model_Context_Protocol)Adv.pdf"
   },
   {
+    "title": "Claude Code in Action",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "\ud83d\udcbb",
+    "src": "certs/Certificate(Skilljar2).pdf"
+  },
+  {
+    "title": "Anthropic Completion Certificate",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "\ud83c\udf93",
+    "src": "certs/Certificate(Skilljar3).pdf"
+  },
+  {
+    "title": "Python Essentials 1",
+    "issuer": "Cisco / OpenEdg",
+    "date": "MAR 2026",
+    "icon": "\ud83d\udc0d",
+    "src": "certs/Certificate(PythonEssentials1).pdf"
+  },
+  {
     "title": "Python Essentials 2",
     "issuer": "Cisco / OpenEdg",
     "date": "MAR 2026",
     "icon": "\ud83d\udc0d",
     "src": "certs/Certificate(PythonEssentials2).pdf"
-  },
-  {
-    "title": "Power BI for Beginners",
-    "issuer": "Simplilearn",
-    "date": "MAR 2026",
-    "icon": "\ud83d\udcca",
-    "src": "certs/Certificate(PowerBI).pdf"
-  },
-  {
-    "title": "AWS Solutions Architecture Job Simulation",
-    "issuer": "Forage (AWS)",
-    "date": "DEC 2025",
-    "icon": "\u2601\ufe0f",
-    "src": "certs/Certificate(Forage_AWS).pdf"
-  },
-  {
-    "title": "Deloitte Technology Job Simulation",
-    "issuer": "Forage (Deloitte)",
-    "date": "DEC 2025",
-    "icon": "\ud83d\udcbc",
-    "src": "certs/Certificate(Forage_Deloitte).pdf"
   },
   {
     "title": "AWS Cloud Quest \u2014 Generative AI Practitioner",
@@ -77,7 +77,7 @@
     "src": "certs/Certificate(AWS_CloudPractitioner).pdf"
   },
   {
-    "title": "AWS Certified Developer - Associate Practice",
+    "title": "AWS Certified Developer \u2014 Associate Practice",
     "issuer": "Amazon Web Services",
     "date": "2025",
     "icon": "\ud83d\udc68\u200d\ud83d\udcbb",
@@ -119,6 +119,20 @@
     "src": "certs/Certificate(Simplilearn_Microsoft).pdf"
   },
   {
+    "title": "Power BI for Beginners",
+    "issuer": "Simplilearn",
+    "date": "MAR 2026",
+    "icon": "\ud83d\udcca",
+    "src": "certs/Certificate(PowerBI).pdf"
+  },
+  {
+    "title": "Introduction to C++",
+    "issuer": "Simplilearn SkillUp",
+    "date": "MAY 2024",
+    "icon": "\u2328\ufe0f",
+    "src": "certs/Certificate(Cpp).pdf"
+  },
+  {
     "title": "Web Development Internship",
     "issuer": "ApexPlanet Software",
     "date": "FEB 2026",
@@ -133,31 +147,24 @@
     "src": "certs/Internship(AICTE_AIML).pdf"
   },
   {
-    "title": "Internship \u2014 Python Full Stack Developer",
+    "title": "Python Full Stack Developer Internship",
     "issuer": "Training Provider",
     "date": "2025",
     "icon": "\ud83d\udc0d",
     "src": "certs/internship(Python_Fullstack_Developer).pdf"
   },
   {
-    "title": "Introduction to C++",
-    "issuer": "Simplilearn SkillUp",
-    "date": "MAY 2024",
-    "icon": "\u2328\ufe0f",
-    "src": "certs/Certificate(Cpp).pdf"
+    "title": "AWS Solutions Architecture Job Simulation",
+    "issuer": "Forage (AWS)",
+    "date": "DEC 2025",
+    "icon": "\u2601\ufe0f",
+    "src": "certs/Certificate(Forage_AWS).pdf"
   },
   {
-    "title": "Completion Certificate",
-    "issuer": "Skilljar",
-    "date": "MAR 2026",
-    "icon": "\ud83c\udfc5",
-    "src": "certs/Certificate(Skilljar2).pdf"
-  },
-  {
-    "title": "Completion Certificate",
-    "issuer": "Skilljar",
-    "date": "MAR 2026",
-    "icon": "\ud83c\udfc5",
-    "src": "certs/Certificate(Skilljar3).pdf"
+    "title": "Deloitte Technology Job Simulation",
+    "issuer": "Forage (Deloitte)",
+    "date": "DEC 2025",
+    "icon": "\ud83d\udcbc",
+    "src": "certs/Certificate(Forage_Deloitte).pdf"
   }
 ]
