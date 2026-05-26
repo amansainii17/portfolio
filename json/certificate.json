@@ -21,14 +21,28 @@
     "src": "certs/Certificate(PythonEssentials2).pdf"
   },
   {
-    "title": "AWS Generative AI & ML Fundamentals",
-    "issuer": "Amazon Web Services",
-    "date": "JUL 2025",
-    "icon": "\u2601\ufe0f",
-    "src": "certs/Certificate(AWS).pdf"
+    "title": "Power BI for Beginners",
+    "issuer": "Simplilearn",
+    "date": "MAR 2026",
+    "icon": "\ud83d\udcca",
+    "src": "certs/Certificate(PowerBI).pdf"
   },
   {
-    "title": "AWS Cloud Quest \u2014 Generative AI",
+    "title": "AWS Solutions Architecture Job Simulation",
+    "issuer": "Forage (AWS)",
+    "date": "DEC 2025",
+    "icon": "\u2601\ufe0f",
+    "src": "certs/Certificate(Forage_AWS).pdf"
+  },
+  {
+    "title": "Deloitte Technology Job Simulation",
+    "issuer": "Forage (Deloitte)",
+    "date": "DEC 2025",
+    "icon": "\ud83d\udcbc",
+    "src": "certs/Certificate(Forage_Deloitte).pdf"
+  },
+  {
+    "title": "AWS Cloud Quest \u2014 Generative AI Practitioner",
     "issuer": "Amazon Web Services",
     "date": "2025",
     "icon": "\ud83c\udfae",
@@ -40,6 +54,41 @@
     "date": "JUL 2025",
     "icon": "\ud83c\udfeb",
     "src": "certs/Certificate(AWS_Internship).pdf"
+  },
+  {
+    "title": "AWS \u2014 Fundamentals of ML & AI",
+    "issuer": "Amazon Web Services",
+    "date": "2025",
+    "icon": "\ud83e\udde0",
+    "src": "certs/Certificate(AWS_ML_Fundamentals).pdf"
+  },
+  {
+    "title": "AWS SimuLearn: Cloud Computing Essentials",
+    "issuer": "Amazon Web Services",
+    "date": "2025",
+    "icon": "\u2601\ufe0f",
+    "src": "certs/Certificate(AWS_CloudEssentials).pdf"
+  },
+  {
+    "title": "AWS Certified Cloud Practitioner Practice",
+    "issuer": "Amazon Web Services",
+    "date": "2025",
+    "icon": "\ud83d\udccb",
+    "src": "certs/Certificate(AWS_CloudPractitioner).pdf"
+  },
+  {
+    "title": "AWS Certified Developer - Associate Practice",
+    "issuer": "Amazon Web Services",
+    "date": "2025",
+    "icon": "\ud83d\udc68\u200d\ud83d\udcbb",
+    "src": "certs/Certificate(AWS_Developer_Associate).pdf"
+  },
+  {
+    "title": "AWS Academy Graduate",
+    "issuer": "Amazon Web Services",
+    "date": "2025",
+    "icon": "\ud83c\udf93",
+    "src": "certs/Certificate(AWS).pdf"
   },
   {
     "title": "Generative AI Certificate",
@@ -80,7 +129,7 @@
     "title": "AI-ML Virtual Internship",
     "issuer": "AICTE \u00d7 Google",
     "date": "MAR 2026",
-    "icon": "\ud83e\udde0",
+    "icon": "\ud83e\udd16",
     "src": "certs/Internship(AICTE_AIML).pdf"
   },
   {
@@ -96,5 +145,19 @@
     "date": "MAY 2024",
     "icon": "\u2328\ufe0f",
     "src": "certs/Certificate(Cpp).pdf"
+  },
+  {
+    "title": "Completion Certificate",
+    "issuer": "Skilljar",
+    "date": "MAR 2026",
+    "icon": "\ud83c\udfc5",
+    "src": "certs/Certificate(Skilljar2).pdf"
+  },
+  {
+    "title": "Completion Certificate",
+    "issuer": "Skilljar",
+    "date": "MAR 2026",
+    "icon": "\ud83c\udfc5",
+    "src": "certs/Certificate(Skilljar3).pdf"
   }
 ]

@@ -51,7 +51,7 @@
         <p class="hero-bio">CSE student at Sage University Indore (2023–2027), building AI-powered web apps. Exploring the intersection of machine learning and full-stack development. Currently leveling up in Python, React, and Generative AI.</p>
         <div class="hero-stats">
           <div><span class="stat-num">3+</span><span class="stat-label">Internships</span></div>
-          <div><span class="stat-num">14+</span><span class="stat-label">Certificates</span></div>
+          <div><span class="stat-num">23+</span><span class="stat-label">Certificates</span></div>
           <div><span class="stat-num">2+</span><span class="stat-label">Projects</span></div>
           <div><span class="stat-num">2027</span><span class="stat-label">Grad Year</span></div>
         </div>
@@ -215,6 +215,20 @@
   </div>
 </section>
 
+<!-- CERT MODAL -->
+<div id="certModal" class="cert-modal">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-bar">
+      <span id="certModalTitle" class="cert-modal-title"></span>
+      <div class="cert-modal-actions">
+        <a id="certModalDl" href="#" download class="cert-modal-dl">↓ DOWNLOAD</a>
+        <button onclick="closeCertModal()" class="cert-modal-close">✕</button>
+      </div>
+    </div>
+    <embed id="certModalEmbed" class="cert-modal-embed" type="application/pdf" />
+  </div>
+</div>
+
 <!-- CERTS -->
 <section id="certs">
   <div class="container">
@@ -223,7 +237,16 @@
       <h2 class="sec-title">ACHIEVEMENT <span class="accent">UNLOCKED</span></h2>
       <div class="sec-line"></div>
     </div>
-    <div id="certs-list"></div>
+    <div class="cert-nav">
+      <span id="certCounter" class="cert-counter">01 / 23</span>
+      <div class="cert-nav-btns">
+        <button class="cert-nav-btn" onclick="scrollCerts(-1)">&#8592;</button>
+        <button class="cert-nav-btn" onclick="scrollCerts(1)">&#8594;</button>
+      </div>
+    </div>
+    <div class="cert-carousel-wrap">
+      <div class="cert-carousel" id="certCarousel"></div>
+    </div>
   </div>
 </section>
 
@@ -311,30 +334,75 @@ document.getElementById('pdfModal').addEventListener('click',function(e){
   if(e.target===this) closePDF();
 });
 
-// Load certificates from JSON
+// Certificate Carousel
+let certData = [];
+const CARD_WIDTH = 320; // card width + gap
+
+function openCertModal(src, title) {
+  document.getElementById('certModalEmbed').src = src;
+  document.getElementById('certModalDl').href = src;
+  document.getElementById('certModalTitle').textContent = title;
+  document.getElementById('certModal').classList.add('open');
+}
+function closeCertModal() {
+  document.getElementById('certModal').classList.remove('open');
+  document.getElementById('certModalEmbed').src = '';
+}
+document.getElementById('certModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCertModal();
+});
+
+function scrollCerts(dir) {
+  const carousel = document.getElementById('certCarousel');
+  carousel.scrollBy({ left: dir * CARD_WIDTH, behavior: 'smooth' });
+}
+
+function updateCounter() {
+  const carousel = document.getElementById('certCarousel');
+  const idx = Math.round(carousel.scrollLeft / CARD_WIDTH) + 1;
+  const total = certData.length;
+  document.getElementById('certCounter').textContent =
+    String(idx).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+}
+
 fetch('./json/certificate.json')
-  .then(r=>r.json())
-  .then(certs=>{
-    const list=document.getElementById('certs-list');
-    certs.forEach((c,i)=>{
-      const wrap=document.createElement('div');
-      wrap.className='cert-block';
-      wrap.innerHTML=`
-        <div class="cert-block-hdr">
-          <span class="cert-block-icon">${c.icon||'🏅'}</span>
+  .then(r => r.json())
+  .then(certs => {
+    certData = certs;
+    const carousel = document.getElementById('certCarousel');
+    document.getElementById('certCounter').textContent =
+      '01 / ' + String(certs.length).padStart(2,'0');
+
+    certs.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.className = 'cert-card';
+      card.innerHTML = `
+        <div class="cert-card-hdr">
+          <div class="cert-card-icon">${c.icon || '🏅'}</div>
           <div>
-            <div class="cert-block-title">${c.title}</div>
-            <div class="cert-block-issuer">${c.issuer.toUpperCase()}${c.date?' — '+c.date:''}</div>
+            <div class="cert-card-title">${c.title}</div>
+            <div class="cert-card-issuer">${c.issuer.toUpperCase()}</div>
           </div>
-          ${c.src?`<a href="./${c.src}" download class="cert-dl-btn">↓ DOWNLOAD</a>`:''}
         </div>
-        ${c.src?`<div class="cert-embed-wrap"><embed src="./${c.src}" type="application/pdf" class="cert-embed" /></div>`:''}
+        ${c.src ? `<div class="cert-card-embed"><embed src="./${c.src}" type="application/pdf" /></div>` : ''}
+        <div class="cert-card-footer">
+          <span class="cert-card-date">${c.date || ''}</span>
+          ${c.src ? `<a href="./${c.src}" download class="cert-dl-btn">↓ DOWNLOAD</a>` : ''}
+        </div>
       `;
-      list.appendChild(wrap);
+      if (c.src) {
+        card.querySelector('.cert-card-embed').addEventListener('click', () => {
+          openCertModal('./' + c.src, c.title);
+        });
+      }
+      carousel.appendChild(card);
     });
+
+    carousel.addEventListener('scroll', updateCounter);
   })
-  .catch(()=>{
-    document.getElementById('certs-list').innerHTML='<p style="color:#7ab8cc;font-family:\'Share Tech Mono\',monospace;font-size:12px;padding:20px;">Deploy on a server to view certificates inline.</p>';
+  .catch(() => {
+    document.getElementById('certCarousel').innerHTML =
+      '<p style="color:#7ab8cc;font-family:\'Share Tech Mono\',monospace;font-size:12px;padding:20px;">Deploy on a server to view certificates inline.</p>';
   });
 </script>
 </body>

@@ -256,59 +256,159 @@ footer p{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(0,245
 }
 
 /* CERTIFICATE BLOCKS - Direct Display */
-.cert-block {
+/* CERTIFICATE CAROUSEL */
+.cert-carousel-wrap {
+  position: relative;
+  width: 100%;
+}
+.cert-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 12px 4px 20px 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cert-carousel::-webkit-scrollbar { display: none; }
+
+.cert-card {
+  flex: 0 0 300px;
   background: var(--card);
   border: 1px solid rgba(0,245,255,0.12);
-  margin-bottom: 32px;
-  overflow: hidden;
-  transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: pointer;
 }
-.cert-block:hover { border-color: rgba(0,245,255,0.3); }
-
-.cert-block-hdr {
+.cert-card:hover {
+  border-color: rgba(0,245,255,0.4);
+  transform: translateY(-4px);
+}
+.cert-card.active {
+  border-color: var(--cyan);
+  box-shadow: 0 0 18px rgba(0,245,255,0.15);
+}
+.cert-card-hdr {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: 14px 16px;
   border-bottom: 1px solid rgba(0,245,255,0.08);
   background: rgba(0,245,255,0.02);
 }
-.cert-block-icon {
-  font-size: 22px;
-  width: 44px; height: 44px;
+.cert-card-icon {
+  font-size: 20px;
+  width: 38px; height: 38px;
   border: 1px solid rgba(0,245,255,0.2);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.cert-block-title {
-  font-size: 15px; font-weight: 700;
-  color: var(--t1); margin-bottom: 3px; letter-spacing: 0.5px;
+.cert-card-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--t1); margin-bottom: 3px; letter-spacing: 0.3px;
+  line-height: 1.3;
 }
-.cert-block-issuer {
+.cert-card-issuer {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; color: var(--cyan);
-  letter-spacing: 2px; text-transform: uppercase;
+  font-size: 9px; color: var(--cyan);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.cert-card-embed {
+  width: 100%;
+  height: 200px;
+  background: #111;
+  overflow: hidden;
+}
+.cert-card-embed embed,
+.cert-card-embed iframe {
+  width: 100%; height: 100%;
+  border: none; pointer-events: none;
+}
+.cert-card-footer {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0,245,255,0.06);
+}
+.cert-card-date {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; color: rgba(0,245,255,0.5);
+  letter-spacing: 1px;
 }
 .cert-dl-btn {
-  margin-left: auto; flex-shrink: 0;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; letter-spacing: 2px;
+  font-size: 9px; letter-spacing: 1.5px;
   color: var(--green); text-decoration: none;
   border: 1px solid rgba(57,255,20,0.3);
-  padding: 6px 14px; transition: all 0.2s;
+  padding: 5px 12px; transition: all 0.2s;
 }
 .cert-dl-btn:hover { background: rgba(57,255,20,0.1); }
-.cert-embed-wrap {
-  width: 100%;
-  height: 480px;
-  background: #111;
+
+/* Nav arrows */
+.cert-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
-.cert-embed {
-  width: 100%; height: 100%;
-  border: none;
+.cert-nav-btns { display: flex; gap: 10px; }
+.cert-nav-btn {
+  background: none;
+  border: 1px solid rgba(0,245,255,0.25);
+  color: var(--cyan);
+  width: 36px; height: 36px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
 }
+.cert-nav-btn:hover { background: rgba(0,245,255,0.08); border-color: var(--cyan); }
+.cert-counter {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: var(--cyan);
+  letter-spacing: 2px;
+}
+
+/* Full view modal */
+.cert-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(5,10,15,0.95);
+  align-items: center; justify-content: center;
+}
+.cert-modal.open { display: flex; }
+.cert-modal-inner {
+  position: relative;
+  width: 92vw; max-width: 860px; height: 90vh;
+  background: #0d1829;
+  border: 1px solid rgba(0,245,255,0.3);
+  display: flex; flex-direction: column;
+}
+.cert-modal-bar {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0,245,255,0.1);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cert-modal-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; letter-spacing: 2px; color: var(--cyan);
+}
+.cert-modal-actions { display: flex; gap: 14px; align-items: center; }
+.cert-modal-dl {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: var(--green);
+  text-decoration: none; letter-spacing: 1px;
+}
+.cert-modal-close {
+  background: none; border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; width: 26px; height: 26px;
+  font-size: 13px; cursor: pointer;
+}
+.cert-modal-embed { flex: 1; border: none; background: #111; width: 100%; }
+
 @media(max-width:768px) {
-  .cert-embed-wrap { height: 320px; }
-  .cert-block-hdr { flex-wrap: wrap; }
-  .cert-dl-btn { margin-left: 0; }
+  .cert-card { flex: 0 0 240px; }
+  .cert-card-embed { height: 150px; }
 }
