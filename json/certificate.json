@@ -1,5 +1,19 @@
 [
   {
+    "title": "Python",
+    "issuer": "Kaggle",
+    "date": "MAY 2026",
+    "icon": "🐍",
+    "src": "certs/Certificate(Kaggle_Python).png"
+  },
+  {
+    "title": "Python Full Stack Internship",
+    "issuer": "EduSkills Academy",
+    "date": "JUN 2026",
+    "icon": "🎓",
+    "src": "certs/Internship(EduSkills_PythonFullStack).pdf"
+  },
+  {
     "title": "Claude with the Anthropic API",
     "issuer": "Anthropic",
     "date": "MAR 2026",
@@ -141,10 +155,10 @@
   },
   {
     "title": "Python Full Stack Developer Internship",
-    "issuer": "Training Provider",
-    "date": "2025",
+    "issuer": "EduSkills Academy",
+    "date": "JUN 2026",
     "icon": "\ud83d\udc0d",
-    "src": "certs/internship(Python_Fullstack_Developer).pdf"
+    "src": "certs/Internship(EduSkills_PythonFullStack).pdf"
   },
   {
     "title": "AWS Solutions Architecture Job Simulation",
