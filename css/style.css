@@ -461,3 +461,15 @@ footer p{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(0,245
   font-size: 20px !important; width: auto !important; padding: 0 14px !important;
 }
 .add-cert-btn:hover { background: rgba(57,255,20,0.1) !important; }
+
+.del-cert-btn {
+  color: #ff4444 !important;
+  border-color: rgba(255,68,68,0.4) !important;
+  font-size: 16px !important;
+  width: auto !important;
+  padding: 0 12px !important;
+}
+.del-cert-btn:hover {
+  background: rgba(255,68,68,0.1) !important;
+  border-color: #ff4444 !important;
+}

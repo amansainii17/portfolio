@@ -279,6 +279,7 @@
         <button class="cert-nav-btn" onclick="scrollCerts(-1)">&#8592;</button>
         <button class="cert-nav-btn" onclick="scrollCerts(1)">&#8594;</button>
         <button class="cert-nav-btn add-cert-btn" onclick="openUploadPanel()" title="Add Certificate">＋</button>
+        <button class="cert-nav-btn del-cert-btn" onclick="openDeletePanel()" title="Delete Certificate">🗑</button>
       </div>
     </div>
     <div class="cert-carousel-wrap">
@@ -418,9 +419,10 @@ function updateCounter() {
     String(Math.min(idx, total)).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
 }
 
-function buildCard(c) {
+function buildCard(c, idx) {
   const card = document.createElement('div');
   card.className = 'cert-card';
+  card.dataset.idx = idx;
   const src = c.dataUrl || (c.src ? './' + c.src : null);
   const isImg = c.isImage || (c.src && /\.(png|jpg|jpeg)$/i.test(c.src));
 
@@ -467,27 +469,20 @@ function buildCard(c) {
 function renderAllCerts() {
   const carousel = document.getElementById('certCarousel');
   carousel.innerHTML = '';
-  certData.forEach(c => carousel.appendChild(buildCard(c)));
+  certData.forEach((c, i) => carousel.appendChild(buildCard(c, i)));
   updateCounter();
   carousel.addEventListener('scroll', updateCounter);
 }
 
 // Load base certs
-fetch('./json/certificate.json')
-  .then(r => r.json())
-  .then(certs => {
-    certData = [...certs];
-    // Load uploaded certs from localStorage
-    const extra = JSON.parse(localStorage.getItem('extraCerts') || '[]');
-    certData = [...certData, ...extra];
-    renderAllCerts();
-  })
-  .catch(() => {
-    // offline fallback — still try localStorage
-    const extra = JSON.parse(localStorage.getItem('extraCerts') || '[]');
-    certData = extra;
-    renderAllCerts();
-  });
+// Inline cert data — no fetch needed, works locally & on Vercel
+const CERT_BASE = [{"title": "Python", "issuer": "Kaggle", "date": "MAY 2026", "icon": "🐍", "src": "certs/Certificate(Kaggle_Python).png"}, {"title": "Python Fullstack Developer Virtual Internship", "issuer": "AICTE × EduSkills", "date": "APR–JUN 2026", "icon": "🎓", "src": "certs/Internship(EduSkills_PythonFullStack).pdf"}, {"title": "Claude with the Anthropic API", "issuer": "Anthropic", "date": "MAR 2026", "icon": "🤖", "src": "certs/Certificate(Claude_API).pdf"}, {"title": "Claude Code in Action", "issuer": "Anthropic", "date": "MAR 2026", "icon": "💻", "src": "certs/Certificate(Claude_Code_Action).pdf"}, {"title": "Claude 101", "issuer": "Anthropic", "date": "MAR 2026", "icon": "⚡", "src": "certs/Certificate(Claude_101).pdf"}, {"title": "Python Essentials 1", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials1).pdf"}, {"title": "Python Essentials 2", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials2).pdf"}, {"title": "AWS Cloud Quest — Generative AI Practitioner", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎮", "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"}, {"title": "AWS Cloud Foundations Internship", "issuer": "SAGE University", "date": "JUL 2025", "icon": "🏫", "src": "certs/Certificate(AWS_Internship).pdf"}, {"title": "AWS — Fundamentals of ML & AI", "issuer": "Amazon Web Services", "date": "2025", "icon": "🧠", "src": "certs/Certificate(AWS_ML_Fundamentals).pdf"}, {"title": "AWS SimuLearn: Cloud Computing Essentials", "issuer": "Amazon Web Services", "date": "2025", "icon": "☁️", "src": "certs/Certificate(AWS_CloudEssentials).pdf"}, {"title": "AWS Certified Cloud Practitioner Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "📋", "src": "certs/Certificate(AWS_CloudPractitioner).pdf"}, {"title": "AWS Certified Developer — Associate Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "👨‍💻", "src": "certs/Certificate(AWS_Developer_Associate).pdf"}, {"title": "AWS Academy Graduate", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎓", "src": "certs/Certificate(AWS).pdf"}, {"title": "Generative AI Certificate", "issuer": "NASSCOM FutureSkills", "date": "DEC 2025", "icon": "🚀", "src": "certs/Certificate(GenerativeAI).pdf"}, {"title": "Red Hat System Administration II (RH134)", "issuer": "Red Hat", "date": "DEC 2025", "icon": "🎩", "src": "certs/Certificate(RedHat_RH134).pdf"}, {"title": "Getting Started with Threat Intelligence", "issuer": "IBM SkillsBuild", "date": "DEC 2025", "icon": "🛡️", "src": "certs/Certificate(IBM_ThreatIntelligence).pdf"}, {"title": "MS Excel Powered by Microsoft", "issuer": "Simplilearn", "date": "DEC 2025", "icon": "📊", "src": "certs/Certificate(Simplilearn_Microsoft).pdf"}, {"title": "Power BI for Beginners", "issuer": "Simplilearn", "date": "MAR 2026", "icon": "📊", "src": "certs/Certificate(PowerBI).pdf"}, {"title": "Introduction to C++", "issuer": "Simplilearn SkillUp", "date": "MAY 2024", "icon": "⌨️", "src": "certs/Certificate(Cpp).pdf"}, {"title": "Web Development Internship", "issuer": "ApexPlanet Software", "date": "FEB 2026", "icon": "💼", "src": "certs/Internship(ApexPlanet).pdf"}, {"title": "AI-ML Virtual Internship", "issuer": "AICTE × Google", "date": "MAR 2026", "icon": "🤖", "src": "certs/Internship(AICTE_AIML).pdf"}, {"title": "AWS Solutions Architecture Job Simulation", "issuer": "Forage (AWS)", "date": "DEC 2025", "icon": "☁️", "src": "certs/Certificate(Forage_AWS).pdf"}, {"title": "Deloitte Technology Job Simulation", "issuer": "Forage (Deloitte)", "date": "DEC 2025", "icon": "💼", "src": "certs/Certificate(Forage_Deloitte).pdf"}];
+
+(function initCerts() {
+  const extra = JSON.parse(localStorage.getItem('extraCerts') || '[]');
+  certData = [...CERT_BASE, ...extra];
+  renderAllCerts();
+})();
 
 
 // ── UPLOAD PANEL ──────────────────────────────────
@@ -578,7 +573,106 @@ function upSaveCert() {
 document.getElementById('uploadPanel').addEventListener('click', function(e) {
   if (e.target === this) closeUploadPanel();
 });
+
+
+// ── DELETE PANEL ──────────────────────────────────
+function openDeletePanel() {
+  document.getElementById('deletePanel').classList.add('open');
+  document.getElementById('delStep1').style.display = 'block';
+  document.getElementById('delStep2').style.display = 'none';
+  document.getElementById('delPassword').value = '';
+  document.getElementById('delPassErr').style.display = 'none';
+  setTimeout(() => document.getElementById('delPassword').focus(), 100);
+}
+function closeDeletePanel() {
+  document.getElementById('deletePanel').classList.remove('open');
+}
+function checkDeletePass() {
+  if (document.getElementById('delPassword').value === UPLOAD_PASS) {
+    document.getElementById('delStep1').style.display = 'none';
+    document.getElementById('delStep2').style.display = 'block';
+    renderDeleteList();
+  } else {
+    document.getElementById('delPassErr').style.display = 'block';
+    document.getElementById('delPassword').focus();
+  }
+}
+function renderDeleteList() {
+  const list = document.getElementById('delCertList');
+  list.innerHTML = '';
+  const extra = JSON.parse(localStorage.getItem('extraCerts') || '[]');
+
+  // Show all certs — base ones are protected, uploaded ones deletable
+  certData.forEach((c, i) => {
+    const isUploaded = !!c.uploaded;
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(0,245,255,0.1);border-radius:6px;';
+    row.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+        <span style="font-size:18px;flex-shrink:0;">${c.icon || '🏅'}</span>
+        <div style="min-width:0;">
+          <div style="font-size:11px;color:var(--t1);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;">${c.title}</div>
+          <div style="font-size:9px;color:var(--cyan);font-family:'Share Tech Mono',monospace;letter-spacing:1px;">${c.issuer}</div>
+        </div>
+      </div>
+      ${isUploaded
+        ? `<button onclick="deleteCert(${i})" style="flex-shrink:0;background:rgba(255,68,68,0.1);border:1px solid #ff4444;color:#ff4444;padding:5px 12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;border-radius:4px;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,68,68,0.25)'" onmouseout="this.style.background='rgba(255,68,68,0.1)'">DELETE</button>`
+        : `<span style="flex-shrink:0;font-size:9px;color:#3a6a7a;font-family:'Share Tech Mono',monospace;letter-spacing:1px;">PROTECTED</span>`
+      }`;
+    list.appendChild(row);
+  });
+
+  if (certData.length === 0) {
+    list.innerHTML = '<p style="color:var(--t2);font-family:Share Tech Mono,monospace;font-size:11px;text-align:center;">No certificates found.</p>';
+  }
+}
+function deleteCert(idx) {
+  const cert = certData[idx];
+  if (!cert || !cert.uploaded) return;
+
+  // Remove from localStorage
+  const extra = JSON.parse(localStorage.getItem('extraCerts') || '[]');
+  const newExtra = extra.filter(e => e.title !== cert.title || e.dataUrl !== cert.dataUrl);
+  localStorage.setItem('extraCerts', JSON.stringify(newExtra));
+
+  // Remove from certData and re-render
+  certData.splice(idx, 1);
+  renderAllCerts();
+
+  // Show success msg and refresh delete list
+  const msg = document.getElementById('delMsg');
+  msg.textContent = '✓ DELETED: ' + cert.title;
+  msg.style.color = '#39ff14';
+  msg.style.display = 'block';
+  renderDeleteList();
+  setTimeout(() => { msg.style.display = 'none'; }, 2500);
+}
+document.getElementById('deletePanel').addEventListener('click', function(e) {
+  if (e.target === this) closeDeletePanel();
+});
+
 </script>
+
+<!-- DELETE PANEL -->
+<div id="deletePanel" class="upload-panel">
+  <div class="upload-panel-inner">
+    <div class="upload-panel-bar">
+      <span style="font-family:'Orbitron',monospace;font-size:13px;color:#ff4444;letter-spacing:2px;">🗑 DELETE CERTIFICATE</span>
+      <button onclick="closeDeletePanel()" class="cert-modal-close">✕</button>
+    </div>
+    <div id="delStep1" style="padding:20px 18px;">
+      <p style="color:var(--t2);font-family:'Share Tech Mono',monospace;font-size:12px;margin-bottom:14px;letter-spacing:1px;">ENTER ADMIN PASSWORD</p>
+      <input id="delPassword" type="password" placeholder="Password..." class="up-input" onkeydown="if(event.key==='Enter')checkDeletePass()"/>
+      <p id="delPassErr" style="color:#ff4444;font-size:11px;font-family:'Share Tech Mono',monospace;margin-top:4px;display:none;">✕ INCORRECT PASSWORD</p>
+      <button class="up-btn" style="border-color:#ff4444;color:#ff4444;" onclick="checkDeletePass()">UNLOCK →</button>
+    </div>
+    <div id="delStep2" style="display:none;padding:20px 18px;">
+      <p style="color:var(--t2);font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:14px;letter-spacing:1px;">SELECT CERTIFICATE TO DELETE</p>
+      <div id="delCertList" style="max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;"></div>
+      <p id="delMsg" style="font-size:11px;font-family:'Share Tech Mono',monospace;margin-top:12px;text-align:center;display:none;"></p>
+    </div>
+  </div>
+</div>
 
 <!-- UPLOAD PANEL -->
 <div id="uploadPanel" class="upload-panel">
