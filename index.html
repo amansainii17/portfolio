@@ -6,6 +6,7 @@
 <title>Aman Saini — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
@@ -434,10 +435,13 @@ function buildCard(c, idx) {
         <img src="${src}" alt="${c.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
       </div>`;
     } else {
-      // PDF: use embed for live preview (works on server/Vercel)
-      previewHTML = `<div class="cert-card-embed cert-clickable" style="cursor:pointer;overflow:hidden;background:#0a1520;position:relative;">
-        <embed src="${src}" type="application/pdf" style="width:100%;height:100%;border:none;pointer-events:none;" />
-        <div style="position:absolute;inset:0;cursor:pointer;"></div>
+      // PDF: canvas thumbnail — works on all devices including mobile
+      previewHTML = `<div class="cert-card-embed cert-clickable" style="cursor:pointer;overflow:hidden;background:#0a1520;display:flex;align-items:center;justify-content:center;position:relative;">
+        <canvas class="pdf-thumb" style="width:100%;height:100%;object-fit:contain;display:block;"></canvas>
+        <div class="pdf-thumb-loading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#0a1520;">
+          <div style="font-size:32px;">📄</div>
+          <div style="font-size:9px;color:#4a8a9a;font-family:'Share Tech Mono',monospace;letter-spacing:1px;">LOADING...</div>
+        </div>
       </div>`;
     }
   } else {
@@ -464,46 +468,51 @@ function buildCard(c, idx) {
     card.querySelector('.cert-clickable').addEventListener('click', () => {
       openCertModal(src, c.title, isImg);
     });
-
+    if (!isImg) {
+      // Render PDF thumbnail after card is added to DOM
+      setTimeout(() => {
+        const canvas = card.querySelector('.pdf-thumb');
+        if (canvas) renderPdfThumb(src, canvas, card);
+      }, 100);
+    }
   }
   return card;
 }
 
-function renderPdfThumb(src, canvas) {
+function renderPdfThumb(src, canvas, card) {
   if (typeof pdfjsLib === 'undefined') return;
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  // Support both URL paths and base64 dataUrls
-  const docSrc = src.startsWith('data:') ? { data: atob(src.split(',')[1]) } : src;
+  const docSrc = src.startsWith('data:')
+    ? { data: atob(src.split(',')[1]) }
+    : src;
 
-  pdfjsLib.getDocument(docSrc).promise.then(pdf => {
-    return pdf.getPage(1);
-  }).then(page => {
-    const embedEl = canvas.parentElement;
-    const W = embedEl.clientWidth || 300;
-    const H = embedEl.clientHeight || 200;
-    const viewport = page.getViewport({ scale: 1 });
-    const scale = Math.max(W / viewport.width, H / viewport.height);
-    const scaledVP = page.getViewport({ scale });
-    canvas.width = scaledVP.width;
-    canvas.height = scaledVP.height;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    page.render({ canvasContext: canvas.getContext('2d'), viewport: scaledVP });
-  }).catch(() => {
-    const ctx = canvas.getContext('2d');
-    canvas.width = 300; canvas.height = 200;
-    ctx.fillStyle = '#0a1520';
-    ctx.fillRect(0,0,300,200);
-    ctx.fillStyle = '#00f5ff';
-    ctx.font = '48px serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('📄', 150, 110);
-    ctx.font = '11px monospace';
-    ctx.fillStyle = '#7ab8cc';
-    ctx.fillText('CLICK TO VIEW', 150, 160);
-  });
+  pdfjsLib.getDocument(docSrc).promise
+    .then(pdf => pdf.getPage(1))
+    .then(page => {
+      const wrap = canvas.parentElement;
+      const W = wrap.clientWidth || 300;
+      const H = wrap.clientHeight || 190;
+      const vp0 = page.getViewport({ scale: 1 });
+      const scale = Math.min(W / vp0.width, H / vp0.height) * 1.5;
+      const vp = page.getViewport({ scale });
+      canvas.width = vp.width;
+      canvas.height = vp.height;
+      return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+    })
+    .then(() => {
+      // Hide loading overlay once rendered
+      const loader = card.querySelector('.pdf-thumb-loading');
+      if (loader) loader.style.display = 'none';
+    })
+    .catch(() => {
+      // Fallback icon
+      const loader = card.querySelector('.pdf-thumb-loading');
+      if (loader) {
+        loader.innerHTML = '<div style="font-size:36px;">📄</div><div style="font-size:9px;color:#7ab8cc;font-family:Share Tech Mono,monospace;letter-spacing:1px;">CLICK TO VIEW</div>';
+      }
+    });
 }
 
 function renderAllCerts() {
