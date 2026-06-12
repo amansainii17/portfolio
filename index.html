@@ -424,8 +424,9 @@ function buildCard(c, idx) {
   card.className = 'cert-card';
   card.dataset.idx = idx;
   const src = c.dataUrl || (c.src ? './' + c.src : null);
-  const isImg = c.isImage || (c.src && /\.(png|jpg|jpeg)$/i.test(c.src));
+  const isImg = c.isImage || (c.src && /\.(png|jpg|jpeg)$/i.test(c.src)) || (c.dataUrl && c.dataUrl.startsWith('data:image'));
 
+  // Build preview area
   let previewHTML = '';
   if (src) {
     if (isImg) {
@@ -433,9 +434,10 @@ function buildCard(c, idx) {
         <img src="${src}" alt="${c.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
       </div>`;
     } else {
-      previewHTML = `<div class="cert-card-embed cert-clickable" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(0,10,20,0.6);">
-        <div style="font-size:42px;line-height:1;">📄</div>
-        <div style="font-size:9px;color:var(--cyan);font-family:'Share Tech Mono',monospace;letter-spacing:2px;">CLICK TO VIEW</div>
+      // PDF: use embed for live preview (works on server/Vercel)
+      previewHTML = `<div class="cert-card-embed cert-clickable" style="cursor:pointer;overflow:hidden;background:#0a1520;position:relative;">
+        <embed src="${src}" type="application/pdf" style="width:100%;height:100%;border:none;pointer-events:none;" />
+        <div style="position:absolute;inset:0;cursor:pointer;"></div>
       </div>`;
     }
   } else {
@@ -462,8 +464,46 @@ function buildCard(c, idx) {
     card.querySelector('.cert-clickable').addEventListener('click', () => {
       openCertModal(src, c.title, isImg);
     });
+
   }
   return card;
+}
+
+function renderPdfThumb(src, canvas) {
+  if (typeof pdfjsLib === 'undefined') return;
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  // Support both URL paths and base64 dataUrls
+  const docSrc = src.startsWith('data:') ? { data: atob(src.split(',')[1]) } : src;
+
+  pdfjsLib.getDocument(docSrc).promise.then(pdf => {
+    return pdf.getPage(1);
+  }).then(page => {
+    const embedEl = canvas.parentElement;
+    const W = embedEl.clientWidth || 300;
+    const H = embedEl.clientHeight || 200;
+    const viewport = page.getViewport({ scale: 1 });
+    const scale = Math.max(W / viewport.width, H / viewport.height);
+    const scaledVP = page.getViewport({ scale });
+    canvas.width = scaledVP.width;
+    canvas.height = scaledVP.height;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    page.render({ canvasContext: canvas.getContext('2d'), viewport: scaledVP });
+  }).catch(() => {
+    const ctx = canvas.getContext('2d');
+    canvas.width = 300; canvas.height = 200;
+    ctx.fillStyle = '#0a1520';
+    ctx.fillRect(0,0,300,200);
+    ctx.fillStyle = '#00f5ff';
+    ctx.font = '48px serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('📄', 150, 110);
+    ctx.font = '11px monospace';
+    ctx.fillStyle = '#7ab8cc';
+    ctx.fillText('CLICK TO VIEW', 150, 160);
+  });
 }
 
 function renderAllCerts() {
