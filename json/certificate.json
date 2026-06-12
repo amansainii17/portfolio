@@ -7,9 +7,9 @@
     "src": "certs/Certificate(Kaggle_Python).png"
   },
   {
-    "title": "Python Full Stack Internship",
-    "issuer": "EduSkills Academy",
-    "date": "JUN 2026",
+    "title": "Python Fullstack Developer Virtual Internship",
+    "issuer": "AICTE × EduSkills",
+    "date": "APR–JUN 2026",
     "icon": "🎓",
     "src": "certs/Internship(EduSkills_PythonFullStack).pdf"
   },
@@ -17,161 +17,154 @@
     "title": "Claude with the Anthropic API",
     "issuer": "Anthropic",
     "date": "MAR 2026",
-    "icon": "\ud83e\udd16",
+    "icon": "🤖",
     "src": "certs/Certificate(Claude_API).pdf"
   },
   {
     "title": "Claude Code in Action",
     "issuer": "Anthropic",
     "date": "MAR 2026",
-    "icon": "\ud83d\udcbb",
+    "icon": "💻",
     "src": "certs/Certificate(Claude_Code_Action).pdf"
   },
   {
     "title": "Claude 101",
     "issuer": "Anthropic",
     "date": "MAR 2026",
-    "icon": "\u26a1",
+    "icon": "⚡",
     "src": "certs/Certificate(Claude_101).pdf"
   },
   {
     "title": "Python Essentials 1",
     "issuer": "Cisco / OpenEdg",
     "date": "MAR 2026",
-    "icon": "\ud83d\udc0d",
+    "icon": "🐍",
     "src": "certs/Certificate(PythonEssentials1).pdf"
   },
   {
     "title": "Python Essentials 2",
     "issuer": "Cisco / OpenEdg",
     "date": "MAR 2026",
-    "icon": "\ud83d\udc0d",
+    "icon": "🐍",
     "src": "certs/Certificate(PythonEssentials2).pdf"
   },
   {
-    "title": "AWS Cloud Quest \u2014 Generative AI Practitioner",
+    "title": "AWS Cloud Quest — Generative AI Practitioner",
     "issuer": "Amazon Web Services",
     "date": "2025",
-    "icon": "\ud83c\udfae",
+    "icon": "🎮",
     "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"
   },
   {
     "title": "AWS Cloud Foundations Internship",
     "issuer": "SAGE University",
     "date": "JUL 2025",
-    "icon": "\ud83c\udfeb",
+    "icon": "🏫",
     "src": "certs/Certificate(AWS_Internship).pdf"
   },
   {
-    "title": "AWS \u2014 Fundamentals of ML & AI",
+    "title": "AWS — Fundamentals of ML & AI",
     "issuer": "Amazon Web Services",
     "date": "2025",
-    "icon": "\ud83e\udde0",
+    "icon": "🧠",
     "src": "certs/Certificate(AWS_ML_Fundamentals).pdf"
   },
   {
     "title": "AWS SimuLearn: Cloud Computing Essentials",
     "issuer": "Amazon Web Services",
     "date": "2025",
-    "icon": "\u2601\ufe0f",
+    "icon": "☁️",
     "src": "certs/Certificate(AWS_CloudEssentials).pdf"
   },
   {
     "title": "AWS Certified Cloud Practitioner Practice",
     "issuer": "Amazon Web Services",
     "date": "2025",
-    "icon": "\ud83d\udccb",
+    "icon": "📋",
     "src": "certs/Certificate(AWS_CloudPractitioner).pdf"
   },
   {
-    "title": "AWS Certified Developer \u2014 Associate Practice",
+    "title": "AWS Certified Developer — Associate Practice",
     "issuer": "Amazon Web Services",
     "date": "2025",
-    "icon": "\ud83d\udc68\u200d\ud83d\udcbb",
+    "icon": "👨‍💻",
     "src": "certs/Certificate(AWS_Developer_Associate).pdf"
   },
   {
     "title": "AWS Academy Graduate",
     "issuer": "Amazon Web Services",
     "date": "2025",
-    "icon": "\ud83c\udf93",
+    "icon": "🎓",
     "src": "certs/Certificate(AWS).pdf"
   },
   {
     "title": "Generative AI Certificate",
     "issuer": "NASSCOM FutureSkills",
     "date": "DEC 2025",
-    "icon": "\ud83d\ude80",
+    "icon": "🚀",
     "src": "certs/Certificate(GenerativeAI).pdf"
   },
   {
     "title": "Red Hat System Administration II (RH134)",
     "issuer": "Red Hat",
     "date": "DEC 2025",
-    "icon": "\ud83c\udfa9",
+    "icon": "🎩",
     "src": "certs/Certificate(RedHat_RH134).pdf"
   },
   {
     "title": "Getting Started with Threat Intelligence",
     "issuer": "IBM SkillsBuild",
     "date": "DEC 2025",
-    "icon": "\ud83d\udee1\ufe0f",
+    "icon": "🛡️",
     "src": "certs/Certificate(IBM_ThreatIntelligence).pdf"
   },
   {
     "title": "MS Excel Powered by Microsoft",
     "issuer": "Simplilearn",
     "date": "DEC 2025",
-    "icon": "\ud83d\udcca",
+    "icon": "📊",
     "src": "certs/Certificate(Simplilearn_Microsoft).pdf"
   },
   {
     "title": "Power BI for Beginners",
     "issuer": "Simplilearn",
     "date": "MAR 2026",
-    "icon": "\ud83d\udcca",
+    "icon": "📊",
     "src": "certs/Certificate(PowerBI).pdf"
   },
   {
     "title": "Introduction to C++",
     "issuer": "Simplilearn SkillUp",
     "date": "MAY 2024",
-    "icon": "\u2328\ufe0f",
+    "icon": "⌨️",
     "src": "certs/Certificate(Cpp).pdf"
   },
   {
     "title": "Web Development Internship",
     "issuer": "ApexPlanet Software",
     "date": "FEB 2026",
-    "icon": "\ud83d\udcbc",
+    "icon": "💼",
     "src": "certs/Internship(ApexPlanet).pdf"
   },
   {
     "title": "AI-ML Virtual Internship",
-    "issuer": "AICTE \u00d7 Google",
+    "issuer": "AICTE × Google",
     "date": "MAR 2026",
-    "icon": "\ud83e\udd16",
+    "icon": "🤖",
     "src": "certs/Internship(AICTE_AIML).pdf"
-  },
-  {
-    "title": "Python Full Stack Developer Internship",
-    "issuer": "EduSkills Academy",
-    "date": "JUN 2026",
-    "icon": "\ud83d\udc0d",
-    "src": "certs/Internship(EduSkills_PythonFullStack).pdf"
   },
   {
     "title": "AWS Solutions Architecture Job Simulation",
     "issuer": "Forage (AWS)",
     "date": "DEC 2025",
-    "icon": "\u2601\ufe0f",
+    "icon": "☁️",
     "src": "certs/Certificate(Forage_AWS).pdf"
   },
   {
     "title": "Deloitte Technology Job Simulation",
     "issuer": "Forage (Deloitte)",
     "date": "DEC 2025",
-    "icon": "\ud83d\udcbc",
+    "icon": "💼",
     "src": "certs/Certificate(Forage_Deloitte).pdf"
   }
 ]

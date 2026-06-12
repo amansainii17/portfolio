@@ -274,10 +274,11 @@
       <div class="sec-line"></div>
     </div>
     <div class="cert-nav">
-      <span id="certCounter" class="cert-counter">01 / 23</span>
+      <span id="certCounter" class="cert-counter">01 / 24</span>
       <div class="cert-nav-btns">
         <button class="cert-nav-btn" onclick="scrollCerts(-1)">&#8592;</button>
         <button class="cert-nav-btn" onclick="scrollCerts(1)">&#8594;</button>
+        <button class="cert-nav-btn add-cert-btn" onclick="openUploadPanel()" title="Add Certificate">＋</button>
       </div>
     </div>
     <div class="cert-carousel-wrap">
@@ -374,8 +375,25 @@ document.getElementById('pdfModal').addEventListener('click',function(e){
 let certData = [];
 const CARD_WIDTH = 320; // card width + gap
 
-function openCertModal(src, title) {
-  document.getElementById('certModalEmbed').src = src;
+function openCertModal(src, title, isImage) {
+  const embed = document.getElementById('certModalEmbed');
+  if (isImage) {
+    embed.style.display = 'none';
+    let img = document.getElementById('certModalImg');
+    if (!img) {
+      img = document.createElement('img');
+      img.id = 'certModalImg';
+      img.style = 'width:100%;height:100%;object-fit:contain;border-radius:8px;';
+      embed.parentNode.insertBefore(img, embed);
+    }
+    img.src = src;
+    img.style.display = 'block';
+  } else {
+    let img = document.getElementById('certModalImg');
+    if (img) img.style.display = 'none';
+    embed.style.display = 'block';
+    embed.src = src;
+  }
   document.getElementById('certModalDl').href = src;
   document.getElementById('certModalTitle').textContent = title;
   document.getElementById('certModal').classList.add('open');
@@ -383,6 +401,8 @@ function openCertModal(src, title) {
 function closeCertModal() {
   document.getElementById('certModal').classList.remove('open');
   document.getElementById('certModalEmbed').src = '';
+  let img = document.getElementById('certModalImg');
+  if (img) img.style.display = 'none';
 }
 document.getElementById('certModal').addEventListener('click', function(e) {
   if (e.target === this) closeCertModal();
@@ -412,6 +432,18 @@ fetch('./json/certificate.json')
     certs.forEach((c, i) => {
       const card = document.createElement('div');
       card.className = 'cert-card';
+      const isImg = c.src && /\.(png|jpg|jpeg)$/i.test(c.src);
+      let previewHTML = '';
+      if (c.src) {
+        previewHTML = isImg
+          ? `<div class="cert-card-embed" style="cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+               <img src="./${c.src}" alt="${c.title}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" loading="lazy"/>
+             </div>`
+          : `<div class="cert-card-embed" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,0.3);">
+               <div style="font-size:36px;">📄</div>
+               <div style="font-size:10px;color:#7ab8cc;font-family:'Share Tech Mono',monospace;letter-spacing:2px;">CLICK TO VIEW</div>
+             </div>`;
+      }
       card.innerHTML = `
         <div class="cert-card-hdr">
           <div class="cert-card-icon">${c.icon || '🏅'}</div>
@@ -420,7 +452,7 @@ fetch('./json/certificate.json')
             <div class="cert-card-issuer">${c.issuer.toUpperCase()}</div>
           </div>
         </div>
-        ${c.src ? `<div class="cert-card-embed"><embed src="./${c.src}" type="application/pdf" /></div>` : ''}
+        ${previewHTML}
         <div class="cert-card-footer">
           <span class="cert-card-date">${c.date || ''}</span>
           ${c.src ? `<a href="./${c.src}" download class="cert-dl-btn">↓ DOWNLOAD</a>` : ''}
@@ -428,7 +460,7 @@ fetch('./json/certificate.json')
       `;
       if (c.src) {
         card.querySelector('.cert-card-embed').addEventListener('click', () => {
-          openCertModal('./' + c.src, c.title);
+          openCertModal('./' + c.src, c.title, isImg);
         });
       }
       carousel.appendChild(card);
@@ -440,6 +472,190 @@ fetch('./json/certificate.json')
     document.getElementById('certCarousel').innerHTML =
       '<p style="color:#7ab8cc;font-family:\'Share Tech Mono\',monospace;font-size:12px;padding:20px;">Deploy on a server to view certificates inline.</p>';
   });
+
+
+// ── UPLOAD PANEL ──────────────────────────────────
+const UPLOAD_PASS = 'aman@2003';
+let upFile = null;
+
+function openUploadPanel() {
+  document.getElementById('uploadPanel').classList.add('open');
+  document.getElementById('upStep1').style.display = 'block';
+  document.getElementById('upStep2').style.display = 'none';
+  document.getElementById('upPassword').value = '';
+  document.getElementById('upPassErr').style.display = 'none';
+  setTimeout(() => document.getElementById('upPassword').focus(), 100);
+}
+function closeUploadPanel() {
+  document.getElementById('uploadPanel').classList.remove('open');
+  upFile = null;
+  document.getElementById('upFilePreview').style.display = 'none';
+  document.getElementById('upImgPreview').style.display = 'none';
+  document.getElementById('upTitle').value = '';
+  document.getElementById('upIssuer').value = '';
+  document.getElementById('upDate').value = '';
+  document.getElementById('upFormErr').style.display = 'none';
+  document.getElementById('upFileInput').value = '';
+}
+function checkUploadPass() {
+  const val = document.getElementById('upPassword').value;
+  if (val === UPLOAD_PASS) {
+    document.getElementById('upStep1').style.display = 'none';
+    document.getElementById('upStep2').style.display = 'block';
+  } else {
+    document.getElementById('upPassErr').style.display = 'block';
+  }
+}
+function upDragOver(e) {
+  e.preventDefault();
+  document.getElementById('upDropZone').classList.add('dragover');
+}
+function upDrop(e) {
+  e.preventDefault();
+  document.getElementById('upDropZone').classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file) upFileSelected(file);
+}
+function upFileSelected(file) {
+  upFile = file;
+  document.getElementById('upFileName').textContent = '📎 ' + file.name;
+  document.getElementById('upFilePreview').style.display = 'block';
+  const isImg = /\.(png|jpg|jpeg)$/i.test(file.name);
+  const imgEl = document.getElementById('upImgPreview');
+  if (isImg) {
+    const reader = new FileReader();
+    reader.onload = e => { imgEl.src = e.target.result; imgEl.style.display = 'block'; };
+    reader.readAsDataURL(file);
+  } else {
+    imgEl.style.display = 'none';
+  }
+  // Auto-fill title from filename
+  if (!document.getElementById('upTitle').value) {
+    let name = file.name.replace(/\.(pdf|png|jpg|jpeg)$/i, '').replace(/[_\-]/g, ' ');
+    document.getElementById('upTitle').value = name;
+  }
+}
+function upSaveCert() {
+  const title = document.getElementById('upTitle').value.trim();
+  const issuer = document.getElementById('upIssuer').value.trim();
+  const date = document.getElementById('upDate').value.trim();
+  if (!title || !issuer || !upFile) {
+    document.getElementById('upFormErr').style.display = 'block';
+    return;
+  }
+  document.getElementById('upFormErr').style.display = 'none';
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const isImg = /\.(png|jpg|jpeg)$/i.test(upFile.name);
+    const newCert = {
+      title, issuer, date: date || 'RECENT',
+      icon: isImg ? '🖼️' : '📄',
+      src: null,
+      dataUrl: e.target.result,
+      isImage: isImg,
+      uploaded: true
+    };
+    // Save to localStorage
+    const saved = JSON.parse(localStorage.getItem('extraCerts') || '[]');
+    saved.push(newCert);
+    localStorage.setItem('extraCerts', JSON.stringify(saved));
+    // Add card to carousel
+    addCertCard(newCert);
+    closeUploadPanel();
+    // Scroll to last card
+    setTimeout(() => {
+      const carousel = document.getElementById('certCarousel');
+      carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+    }, 200);
+  };
+  reader.readAsDataURL(upFile);
+}
+function addCertCard(c) {
+  const carousel = document.getElementById('certCarousel');
+  const card = document.createElement('div');
+  card.className = 'cert-card';
+  const isImg = c.isImage || (c.src && /\.(png|jpg|jpeg)$/i.test(c.src));
+  const srcVal = c.dataUrl || ('./' + c.src);
+  let previewHTML = '';
+  if (c.dataUrl || c.src) {
+    previewHTML = isImg
+      ? `<div class="cert-card-embed" style="cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+           <img src="${srcVal}" alt="${c.title}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" loading="lazy"/>
+         </div>`
+      : `<div class="cert-card-embed" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,0.3);">
+           <div style="font-size:36px;">📄</div>
+           <div style="font-size:10px;color:#7ab8cc;font-family:'Share Tech Mono',monospace;letter-spacing:2px;">CLICK TO VIEW</div>
+         </div>`;
+  }
+  card.innerHTML = `
+    <div class="cert-card-hdr">
+      <div class="cert-card-icon">${c.icon || '🏅'}</div>
+      <div>
+        <div class="cert-card-title">${c.title}</div>
+        <div class="cert-card-issuer">${c.issuer.toUpperCase()}</div>
+      </div>
+    </div>
+    ${previewHTML}
+    <div class="cert-card-footer">
+      <span class="cert-card-date">${c.date || ''}</span>
+      ${srcVal ? `<a href="${srcVal}" download="${c.title}" class="cert-dl-btn">↓ DOWNLOAD</a>` : ''}
+    </div>
+  `;
+  if (c.dataUrl || c.src) {
+    card.querySelector('.cert-card-embed').addEventListener('click', () => {
+      openCertModal(srcVal, c.title, isImg);
+    });
+  }
+  carousel.appendChild(card);
+  certData.push(c);
+  updateCounter();
+}
+// Load uploaded certs from localStorage on page load
+window.addEventListener('load', () => {
+  const saved = JSON.parse(localStorage.getItem('extraCerts') || '[]');
+  saved.forEach(c => addCertCard(c));
+});
+// Close upload panel on backdrop click
+document.getElementById('uploadPanel').addEventListener('click', function(e) {
+  if (e.target === this) closeUploadPanel();
+});
+
 </script>
+
+<!-- UPLOAD PANEL -->
+<div id="uploadPanel" class="upload-panel">
+  <div class="upload-panel-inner">
+    <div class="upload-panel-bar">
+      <span style="font-family:'Orbitron',monospace;font-size:13px;color:var(--green);letter-spacing:2px;">＋ ADD CERTIFICATE</span>
+      <button onclick="closeUploadPanel()" class="cert-modal-close">✕</button>
+    </div>
+    <!-- Step 1: Password -->
+    <div id="upStep1">
+      <p style="color:var(--t2);font-family:'Share Tech Mono',monospace;font-size:12px;margin-bottom:12px;letter-spacing:1px;">ENTER ADMIN PASSWORD</p>
+      <input id="upPassword" type="password" placeholder="Password..." class="up-input" onkeydown="if(event.key==='Enter')checkUploadPass()"/>
+      <p id="upPassErr" style="color:#ff4444;font-size:11px;font-family:'Share Tech Mono',monospace;margin-top:8px;display:none;">INCORRECT PASSWORD</p>
+      <button class="up-btn" onclick="checkUploadPass()">UNLOCK →</button>
+    </div>
+    <!-- Step 2: Upload Form -->
+    <div id="upStep2" style="display:none;">
+      <div id="upDropZone" class="up-dropzone" onclick="document.getElementById('upFileInput').click()" ondragover="upDragOver(event)" ondrop="upDrop(event)">
+        <div style="font-size:40px;">📂</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--t2);margin-top:8px;letter-spacing:1px;">DRAG & DROP or CLICK TO SELECT</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a7a8a;margin-top:4px;">PDF / PNG / JPG supported</div>
+      </div>
+      <input type="file" id="upFileInput" accept=".pdf,.png,.jpg,.jpeg" style="display:none" onchange="upFileSelected(this.files[0])"/>
+      <div id="upFilePreview" style="display:none;margin-top:12px;padding:10px;background:rgba(0,245,255,0.05);border:1px solid var(--border);border-radius:6px;">
+        <div id="upFileName" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--cyan);margin-bottom:8px;"></div>
+        <img id="upImgPreview" src="" style="display:none;width:100%;max-height:120px;object-fit:contain;border-radius:4px;margin-bottom:8px;"/>
+      </div>
+      <input id="upTitle" type="text" placeholder="Certificate Title *" class="up-input" style="margin-top:12px;"/>
+      <input id="upIssuer" type="text" placeholder="Issuer / Organization *" class="up-input"/>
+      <input id="upDate" type="text" placeholder="Date (e.g. JUN 2026)" class="up-input"/>
+      <p id="upFormErr" style="color:#ff4444;font-size:11px;font-family:'Share Tech Mono',monospace;margin-top:4px;display:none;">PLEASE FILL ALL FIELDS AND SELECT A FILE</p>
+      <button class="up-btn" onclick="upSaveCert()">SAVE CERTIFICATE ✓</button>
+      <p style="font-size:10px;color:#4a7a8a;font-family:'Share Tech Mono',monospace;margin-top:8px;text-align:center;">Saved in browser · visible on this device</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
