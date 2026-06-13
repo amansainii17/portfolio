@@ -1,12 +1,5 @@
 [
   {
-    "title": "Python",
-    "issuer": "Kaggle",
-    "date": "MAY 2026",
-    "icon": "🐍",
-    "src": "certs/Certificate(Kaggle_Python).png"
-  },
-  {
     "title": "Python Fullstack Developer Virtual Internship",
     "issuer": "AICTE × EduSkills",
     "date": "APR–JUN 2026",
@@ -14,25 +7,25 @@
     "src": "certs/Internship(EduSkills_PythonFullStack).pdf"
   },
   {
-    "title": "Claude with the Anthropic API",
-    "issuer": "Anthropic",
+    "title": "Web Development Internship",
+    "issuer": "ApexPlanet Software",
+    "date": "FEB 2026",
+    "icon": "💼",
+    "src": "certs/Internship(ApexPlanet).pdf"
+  },
+  {
+    "title": "AI-ML Virtual Internship",
+    "issuer": "AICTE × Google",
     "date": "MAR 2026",
     "icon": "🤖",
-    "src": "certs/Certificate(Claude_API).pdf"
+    "src": "certs/Internship(AICTE_AIML).pdf"
   },
   {
-    "title": "Claude Code in Action",
-    "issuer": "Anthropic",
-    "date": "MAR 2026",
-    "icon": "💻",
-    "src": "certs/Certificate(Claude_Code_Action).pdf"
-  },
-  {
-    "title": "Claude 101",
-    "issuer": "Anthropic",
-    "date": "MAR 2026",
-    "icon": "⚡",
-    "src": "certs/Certificate(Claude_101).pdf"
+    "title": "AWS Cloud Foundations Internship",
+    "issuer": "SAGE University",
+    "date": "JUL 2025",
+    "icon": "🏫",
+    "src": "certs/Certificate(AWS_Internship).pdf"
   },
   {
     "title": "Python Essentials 1",
@@ -49,18 +42,18 @@
     "src": "certs/Certificate(PythonEssentials2).pdf"
   },
   {
+    "title": "Python",
+    "issuer": "Kaggle",
+    "date": "MAY 2026",
+    "icon": "🐍",
+    "src": "certs/Certificate(Kaggle_Python).png"
+  },
+  {
     "title": "AWS Cloud Quest — Generative AI Practitioner",
     "issuer": "Amazon Web Services",
     "date": "2025",
     "icon": "🎮",
     "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"
-  },
-  {
-    "title": "AWS Cloud Foundations Internship",
-    "issuer": "SAGE University",
-    "date": "JUL 2025",
-    "icon": "🏫",
-    "src": "certs/Certificate(AWS_Internship).pdf"
   },
   {
     "title": "AWS — Fundamentals of ML & AI",
@@ -96,6 +89,34 @@
     "date": "2025",
     "icon": "🎓",
     "src": "certs/Certificate(AWS).pdf"
+  },
+  {
+    "title": "AWS Solutions Architecture Job Simulation",
+    "issuer": "Forage (AWS)",
+    "date": "DEC 2025",
+    "icon": "☁️",
+    "src": "certs/Certificate(Forage_AWS).pdf"
+  },
+  {
+    "title": "Claude with the Anthropic API",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "🤖",
+    "src": "certs/Certificate(Claude_API).pdf"
+  },
+  {
+    "title": "Claude Code in Action",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "💻",
+    "src": "certs/Certificate(Claude_Code_Action).pdf"
+  },
+  {
+    "title": "Claude 101",
+    "issuer": "Anthropic",
+    "date": "MAR 2026",
+    "icon": "⚡",
+    "src": "certs/Certificate(Claude_101).pdf"
   },
   {
     "title": "Generative AI Certificate",
@@ -138,27 +159,6 @@
     "date": "MAY 2024",
     "icon": "⌨️",
     "src": "certs/Certificate(Cpp).pdf"
-  },
-  {
-    "title": "Web Development Internship",
-    "issuer": "ApexPlanet Software",
-    "date": "FEB 2026",
-    "icon": "💼",
-    "src": "certs/Internship(ApexPlanet).pdf"
-  },
-  {
-    "title": "AI-ML Virtual Internship",
-    "issuer": "AICTE × Google",
-    "date": "MAR 2026",
-    "icon": "🤖",
-    "src": "certs/Internship(AICTE_AIML).pdf"
-  },
-  {
-    "title": "AWS Solutions Architecture Job Simulation",
-    "issuer": "Forage (AWS)",
-    "date": "DEC 2025",
-    "icon": "☁️",
-    "src": "certs/Certificate(Forage_AWS).pdf"
   },
   {
     "title": "Deloitte Technology Job Simulation",

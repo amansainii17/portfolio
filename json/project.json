@@ -2,7 +2,7 @@
     {
         "name": "ExamForge",
         "description": "An AI-powered exam paper generator web app featuring a multi-step wizard for academic paper creation, PDF/DOCX export, and JWT-based role-aware authentication for faculty and admins.",
-        "html_url": "#",
+        "html_url": "https://github.com/amansainii17/Examoforge.git",
         "language": "Python",
         "topics": ["flask", "python", "ai", "jwt", "pdf", "featured"],
         "features": ["Dashboard with stats", "Multi-step paper wizard", "PDF & DOCX export", "Admin panel", "AI paper generation", "Role-based access"],
@@ -11,14 +11,37 @@
         "mission": "01"
     },
     {
+        "name": "My Portfolio Website",
+        "description": "A personal portfolio website showcasing projects, skills, certifications, and achievements with a responsive, user-friendly interface and smooth navigation, deployed on Vercel.",
+        "html_url": "https://github.com/amansainii17/portfolio.git",
+        "live_url": "https://amansaini.vercel.app/",
+        "language": "JavaScript",
+        "topics": ["html", "css", "javascript", "vercel", "featured"],
+        "features": ["Responsive design", "Smooth navigation", "Certs & skills showcase", "Live on Vercel"],
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "mission": "02"
+    },
+    {
+        "name": "BusYatra",
+        "description": "A responsive bus booking web application with route search and ticket booking features for a smooth end-to-end booking experience.",
+        "html_url": "https://github.com/amansainii17/busYatra-task-5.git",
+        "language": "JavaScript",
+        "topics": ["html", "css", "javascript", "featured"],
+        "features": ["Route search", "Ticket booking", "Responsive UI"],
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "mission": "03"
+    },
+    {
         "name": "Language Translator",
         "description": "A Python application enabling real-time translation between multiple languages using the Google Translate API, featuring a clean interactive interface with robust error handling for invalid inputs.",
-        "html_url": "#",
+        "html_url": "https://github.com/amansainii17/Languange_Translator.git",
         "language": "Python",
         "topics": ["python", "google-translate", "api", "featured"],
         "features": ["Multi-language support", "Real-time translation", "Error handling", "Interactive UI"],
         "stargazers_count": 0,
         "forks_count": 0,
-        "mission": "02"
+        "mission": "04"
     }
 ]
