@@ -65,7 +65,7 @@
         <p class="hero-bio">CSE student at Sage University Indore (2023–2027), 4th year — building AI-powered web apps. Exploring the intersection of machine learning and full-stack development. Currently leveling up in Python, Flask/Django, and Generative AI.</p>
         <div class="hero-stats">
           <div><span class="stat-num">4+</span><span class="stat-label">Internships</span></div>
-          <div><span class="stat-num">33+</span><span class="stat-label">Certificates</span></div>
+          <div><span class="stat-num">24+</span><span class="stat-label">Certificates</span></div>
           <div><span class="stat-num">4+</span><span class="stat-label">Projects</span></div>
           <div><span class="stat-num">2027</span><span class="stat-label">Grad Year</span></div>
         </div>
@@ -236,7 +236,7 @@
             <span class="t-out">HTML, CSS, MySQL, AWS, Git, Linux</span><br>
             <div><span class="t-prompt">→ </span><span class="t-cmd">git log --stat</span></div>
             <span class="t-out">4+ internships completed</span>
-            <span class="t-out">33+ certifications earned</span>
+            <span class="t-out">24+ certifications earned</span>
             <span class="t-out">4 projects shipped</span><br>
             <div><span class="t-prompt">→ </span><span class="t-cmd">npm run hire-me</span></div>
             <span class="t-out">✓ Open to internships</span>
@@ -316,6 +316,7 @@
       <span id="certModalTitle" class="cert-modal-title"></span>
       <div class="cert-modal-actions">
         <a id="certModalDl" href="#" download class="cert-modal-dl">↓ DOWNLOAD</a>
+        <button id="certModalPrint" style="background:none;border:1px solid rgba(0,245,255,0.3);color:#00f5ff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;padding:4px 12px;cursor:pointer;">⎙ PRINT</button>
         <button onclick="closeCertModal()" class="cert-modal-close">✕</button>
       </div>
     </div>
@@ -344,7 +345,7 @@
       <div class="sec-line"></div>
     </div>
     <div class="cert-nav">
-      <span id="certCounter" class="cert-counter">01 / 33</span>
+      <span id="certCounter" class="cert-counter">01 / 24</span>
       <div class="cert-nav-btns">
         <button class="cert-nav-btn" onclick="scrollCerts(-1)">&#8592;</button>
         <button class="cert-nav-btn" onclick="scrollCerts(1)">&#8594;</button>
@@ -462,12 +463,24 @@ function openCertModal(src, title, isImage) {
   imgEl.style.display = 'none'; imgEl.src = '';
   canvas.style.display = 'none';
   loader.style.display = 'flex';
+  loader.innerHTML = '<div style="font-size:28px;">📄</div><div style="font-size:10px;color:#4a8a9a;font-family:Share Tech Mono,monospace;letter-spacing:1px;margin-top:6px;">LOADING...</div>';
   nav.style.display = 'none';
   _pdfDoc = null; _pdfPage = 1;
+
+  // Hide iframe if exists
+  const iframe = document.getElementById('certModalIframe');
+  if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
 
   document.getElementById('certModalDl').href = src;
   document.getElementById('certModalDl').download = title;
   document.getElementById('certModalTitle').textContent = title;
+
+  // Update print button src
+  document.getElementById('certModalPrint').onclick = () => {
+    const w = window.open(src);
+    if (w) w.addEventListener('load', () => w.print());
+  };
+
   modal.classList.add('open');
 
   if (isImage) {
@@ -571,6 +584,8 @@ function closeCertModal() {
   document.getElementById('certModalLoader').style.display = 'flex';
   document.getElementById('certModalPageNav').style.display = 'none';
   _pdfDoc = null;
+  const iframe = document.getElementById('certModalIframe');
+  if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
 }
 document.getElementById('certModal').addEventListener('click', function(e) {
   if (e.target === this) closeCertModal();
@@ -692,15 +707,7 @@ function renderAllCerts() {
 
 // Load base certs
 // Inline cert data — no fetch needed, works locally & on Vercel
-const CERT_BASE = [{"title": "Python Fullstack Developer Virtual Internship", "issuer": "AICTE × EduSkills", "date": "APR–JUN 2026", "icon": "🎓", "src": "certs/Internship(EduSkills_PythonFullStack).pdf"}, {"title": "Web Development Internship", "issuer": "ApexPlanet Software", "date": "FEB 2026", "icon": "💼", "src": "certs/Internship(ApexPlanet).pdf"}, {"title": "AI-ML Virtual Internship", "issuer": "AICTE × Google", "date": "MAR 2026", "icon": "🤖", "src": "certs/Internship(AICTE_AIML).pdf"}, {"title": "AWS Cloud Foundations Internship", "issuer": "SAGE University", "date": "JUL 2025", "icon": "🏫", "src": "certs/Certificate(AWS_Internship).pdf"}, {"title": "Python Essentials 1", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials1).pdf"}, {"title": "Python Essentials 2", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials2).pdf"}, {"title": "Python", "issuer": "Kaggle", "date": "MAY 2026", "icon": "🐍", "src": "certs/Certificate(Kaggle_Python).png"}, {"title": "AWS Cloud Quest — Generative AI Practitioner", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎮", "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"}, {"title": "AWS — Fundamentals of ML & AI", "issuer": "Amazon Web Services", "date": "2025", "icon": "🧠", "src": "certs/Certificate(AWS_ML_Fundamentals).pdf"}, {"title": "AWS SimuLearn: Cloud Computing Essentials", "issuer": "Amazon Web Services", "date": "2025", "icon": "☁️", "src": "certs/Certificate(AWS_CloudEssentials).pdf"}, {"title": "AWS Certified Cloud Practitioner Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "📋", "src": "certs/Certificate(AWS_CloudPractitioner).pdf"}, {"title": "AWS Certified Developer — Associate Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "👨‍💻", "src": "certs/Certificate(AWS_Developer_Associate).pdf"}, {"title": "AWS Academy Graduate", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎓", "src": "certs/Certificate(AWS).pdf"}, {"title": "AWS Solutions Architecture Job Simulation", "issuer": "Forage (AWS)", "date": "DEC 2025", "icon": "☁️", "src": "certs/Certificate(Forage_AWS).pdf"}, {"title": "Claude with the Anthropic API", "issuer": "Anthropic", "date": "MAR 2026", "icon": "🤖", "src": "certs/Certificate(Claude_API).pdf"}, {"title": "Claude Code in Action", "issuer": "Anthropic", "date": "MAR 2026", "icon": "💻", "src": "certs/Certificate(Claude_Code_Action).pdf"}, {"title": "Claude 101", "issuer": "Anthropic", "date": "MAR 2026", "icon": "⚡", "src": "certs/Certificate(Claude_101).pdf"}, {"title": "Generative AI Certificate", "issuer": "NASSCOM FutureSkills", "date": "DEC 2025", "icon": "🚀", "src": "certs/Certificate(GenerativeAI).pdf"}, {"title": "Red Hat System Administration II (RH134)", "issuer": "Red Hat", "date": "DEC 2025", "icon": "🎩", "src": "certs/Certificate(RedHat_RH134).pdf"}, {"title": "Getting Started with Threat Intelligence", "issuer": "IBM SkillsBuild", "date": "DEC 2025", "icon": "🛡️", "src": "certs/Certificate(IBM_ThreatIntelligence).pdf"}, {"title": "MS Excel Powered by Microsoft", "issuer": "Simplilearn", "date": "DEC 2025", "icon": "📊", "src": "certs/Certificate(Simplilearn_Microsoft).pdf"}, {"title": "Power BI for Beginners", "issuer": "Simplilearn", "date": "MAR 2026", "icon": "📊", "src": "certs/Certificate(PowerBI).pdf"}, {"title": "Introduction to C++", "issuer": "Simplilearn SkillUp", "date": "MAY 2024", "icon": "⌨️", "src": "certs/Certificate(Cpp).pdf"}, {"title": "Deloitte Technology Job Simulation", "issuer": "Forage (Deloitte)", "date": "DEC 2025", "icon": "💼", "src": "certs/Certificate(Forage_Deloitte).pdf"},
-{"title": "AWS Cloud Quest — Generative AI (Advanced)", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎮", "src": "certs/Certificate(AWS_CloudQuest_GenAI2).pdf"},
-{"title": "Introduction to AI & ML on Google Cloud", "issuer": "Google Cloud", "date": "2026", "icon": "☁️", "src": "certs/Certificate(Introduction_to_AI&ML_on_google_cloud).pdf"},
-{"title": "Model Context Protocol (Advanced)", "issuer": "Anthropic / Skilljar", "date": "2026", "icon": "🔗", "src": "certs/Certificate(Model_Context_Protocol)Adv.pdf"},
-{"title": "Anthropic Certification — Level 1", "issuer": "Anthropic Skilljar", "date": "2026", "icon": "⚡", "src": "certs/Certificate(Skilljar1).pdf"},
-{"title": "Anthropic Certification — Level 2", "issuer": "Anthropic Skilljar", "date": "2026", "icon": "⚡", "src": "certs/Certificate(Skilljar2).pdf"},
-{"title": "Anthropic Certification — Level 3", "issuer": "Anthropic Skilljar", "date": "2026", "icon": "⚡", "src": "certs/Certificate(Skilljar3).pdf"},
-{"title": "India AI Impact Buildathon", "issuer": "India AI", "date": "2026", "icon": "🏆", "src": "certs/Certificate(india_AI_Impact_buildathon).pdf"},
-{"title": "Stock Prediction Using ML & LSTM — Research Paper", "issuer": "Research Publication", "date": "2026", "icon": "📰", "src": "certs/Research_Paper(Stock_Prediction_Using_ML&LSTM).pdf"}];
+const CERT_BASE = [{"title": "Python Fullstack Developer Virtual Internship", "issuer": "AICTE × EduSkills", "date": "APR–JUN 2026", "icon": "🎓", "src": "certs/Internship(EduSkills_PythonFullStack).pdf"}, {"title": "Web Development Internship", "issuer": "ApexPlanet Software", "date": "FEB 2026", "icon": "💼", "src": "certs/Internship(ApexPlanet).pdf"}, {"title": "AI-ML Virtual Internship", "issuer": "AICTE × Google", "date": "MAR 2026", "icon": "🤖", "src": "certs/Internship(AICTE_AIML).pdf"}, {"title": "AWS Cloud Foundations Internship", "issuer": "SAGE University", "date": "JUL 2025", "icon": "🏫", "src": "certs/Certificate(AWS_Internship).pdf"}, {"title": "Python Essentials 1", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials1).pdf"}, {"title": "Python Essentials 2", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials2).pdf"}, {"title": "Python", "issuer": "Kaggle", "date": "MAY 2026", "icon": "🐍", "src": "certs/Certificate(Kaggle_Python).png"}, {"title": "AWS Cloud Quest — Generative AI Practitioner", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎮", "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"}, {"title": "AWS — Fundamentals of ML & AI", "issuer": "Amazon Web Services", "date": "2025", "icon": "🧠", "src": "certs/Certificate(AWS_ML_Fundamentals).pdf"}, {"title": "AWS SimuLearn: Cloud Computing Essentials", "issuer": "Amazon Web Services", "date": "2025", "icon": "☁️", "src": "certs/Certificate(AWS_CloudEssentials).pdf"}, {"title": "AWS Certified Cloud Practitioner Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "📋", "src": "certs/Certificate(AWS_CloudPractitioner).pdf"}, {"title": "AWS Certified Developer — Associate Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "👨‍💻", "src": "certs/Certificate(AWS_Developer_Associate).pdf"}, {"title": "AWS Academy Graduate", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎓", "src": "certs/Certificate(AWS).pdf"}, {"title": "AWS Solutions Architecture Job Simulation", "issuer": "Forage (AWS)", "date": "DEC 2025", "icon": "☁️", "src": "certs/Certificate(Forage_AWS).pdf"}, {"title": "Claude with the Anthropic API", "issuer": "Anthropic", "date": "MAR 2026", "icon": "🤖", "src": "certs/Certificate(Claude_API).pdf"}, {"title": "Claude Code in Action", "issuer": "Anthropic", "date": "MAR 2026", "icon": "💻", "src": "certs/Certificate(Claude_Code_Action).pdf"}, {"title": "Claude 101", "issuer": "Anthropic", "date": "MAR 2026", "icon": "⚡", "src": "certs/Certificate(Claude_101).pdf"}, {"title": "Generative AI Certificate", "issuer": "NASSCOM FutureSkills", "date": "DEC 2025", "icon": "🚀", "src": "certs/Certificate(GenerativeAI).pdf"}, {"title": "Red Hat System Administration II (RH134)", "issuer": "Red Hat", "date": "DEC 2025", "icon": "🎩", "src": "certs/Certificate(RedHat_RH134).pdf"}, {"title": "Getting Started with Threat Intelligence", "issuer": "IBM SkillsBuild", "date": "DEC 2025", "icon": "🛡️", "src": "certs/Certificate(IBM_ThreatIntelligence).pdf"}, {"title": "MS Excel Powered by Microsoft", "issuer": "Simplilearn", "date": "DEC 2025", "icon": "📊", "src": "certs/Certificate(Simplilearn_Microsoft).pdf"}, {"title": "Power BI for Beginners", "issuer": "Simplilearn", "date": "MAR 2026", "icon": "📊", "src": "certs/Certificate(PowerBI).pdf"}, {"title": "Introduction to C++", "issuer": "Simplilearn SkillUp", "date": "MAY 2024", "icon": "⌨️", "src": "certs/Certificate(Cpp).pdf"}, {"title": "Deloitte Technology Job Simulation", "issuer": "Forage (Deloitte)", "date": "DEC 2025", "icon": "💼", "src": "certs/Certificate(Forage_Deloitte).pdf"}];
 
 (function initCerts() {
   const extra = JSON.parse(localStorage.getItem('extraCerts') || '[]');
