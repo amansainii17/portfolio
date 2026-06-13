@@ -140,7 +140,7 @@ section{padding:60px 0;position:relative;z-index:2;}
 }
 
 /* PROJECTS */
-.projects-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
+.projects-grid{display:grid;gap:20px;}
 .proj-card{
   background:var(--card);border:1px solid rgba(0,245,255,0.1);
   padding:24px;position:relative;overflow:hidden;transition:border-color 0.3s;
