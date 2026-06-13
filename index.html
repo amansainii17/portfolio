@@ -52,9 +52,9 @@
         <div class="hero-role">// DEVELOPER &amp; AI BUILDER</div>
         <p class="hero-bio">CSE student at Sage University Indore (2023–2027), 4th year — building AI-powered web apps. Exploring the intersection of machine learning and full-stack development. Currently leveling up in Python, React, and Generative AI.</p>
         <div class="hero-stats">
-          <div><span class="stat-num">3+</span><span class="stat-label">Internships</span></div>
+          <div><span class="stat-num">4+</span><span class="stat-label">Internships</span></div>
           <div><span class="stat-num">23+</span><span class="stat-label">Certificates</span></div>
-          <div><span class="stat-num">2+</span><span class="stat-label">Projects</span></div>
+          <div><span class="stat-num">4+</span><span class="stat-label">Projects</span></div>
           <div><span class="stat-num">2027</span><span class="stat-label">Grad Year</span></div>
         </div>
         <div class="hero-cta">
@@ -175,10 +175,10 @@
           <div class="t-bar"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div><span style="margin-left:10px;font-size:10px;color:#7ab8cc;letter-spacing:2px;">portfolio ~ $</span></div>
           <div class="t-body">
             <div><span class="t-prompt">→ </span><span class="t-cmd">whoami</span></div>
-            <span class="t-out">Aman Saini, Developer &amp; AI Builder</span><br>
+            <span class="t-out">Aman Saini, Python Developer | AI &amp; Full-Stack Developer</span><br>
             <div><span class="t-prompt">→ </span><span class="t-cmd">skills --top</span></div>
             <span class="t-out">Python, JavaScript, React.js, Flask</span>
-            <span class="t-out">HTML, CSS, Gen AI, AWS, Git</span><br>
+            <span class="t-out">HTML, CSS, MySQL, AWS, Git, Linux</span><br>
             <div><span class="t-prompt">→ </span><span class="t-cmd">git log --stat</span></div>
             <span class="t-out">3+ internships completed</span>
             <span class="t-out">23+ certifications earned</span>
@@ -262,7 +262,19 @@
         <button onclick="closeCertModal()" class="cert-modal-close">✕</button>
       </div>
     </div>
-    <embed id="certModalEmbed" class="cert-modal-embed" type="application/pdf" />
+    <div id="certModalBody" class="cert-modal-embed" style="display:flex;align-items:center;justify-content:center;overflow:auto;background:#050d14;position:relative;">
+      <img id="certModalImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:contain;border-radius:4px;"/>
+      <canvas id="certModalCanvas" style="display:none;max-width:100%;"></canvas>
+      <div id="certModalLoader" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:absolute;inset:0;background:#050d14;">
+        <div style="width:36px;height:36px;border:3px solid rgba(0,245,255,0.1);border-top-color:#00f5ff;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <div style="font-size:10px;color:#7ab8cc;font-family:Share Tech Mono,monospace;letter-spacing:2px;">LOADING...</div>
+      </div>
+    </div>
+    <div id="certModalPageNav" style="display:none;justify-content:center;align-items:center;gap:16px;padding:10px;border-top:1px solid rgba(0,245,255,0.1);background:rgba(0,0,0,0.4);">
+      <button onclick="pdfPageChange(-1)" style="background:none;border:1px solid rgba(0,245,255,0.2);color:#e0f4ff;padding:4px 16px;border-radius:4px;cursor:pointer;font-family:Share Tech Mono,monospace;font-size:12px;">&#9664;</button>
+      <span id="certModalPageInfo" style="font-family:Share Tech Mono,monospace;font-size:11px;color:#7ab8cc;">1 / 1</span>
+      <button onclick="pdfPageChange(1)" style="background:none;border:1px solid rgba(0,245,255,0.2);color:#e0f4ff;padding:4px 16px;border-radius:4px;cursor:pointer;font-family:Share Tech Mono,monospace;font-size:12px;">&#9654;</button>
+    </div>
   </div>
 </div>
 
@@ -299,7 +311,7 @@
     </div>
     <div class="contact-grid">
       <div>
-        <p class="contact-intro">Currently a 4th-year CSE student at Sage University Indore. Open to internship opportunities, project collaborations, and connecting with developers and AI enthusiasts.</p>
+        <p class="contact-intro">Currently a 4th-year CSE student at Sage University Indore. Open to internships and collaborations. Open to internship opportunities, project collaborations, and connecting with developers and AI enthusiasts.</p>
         <div class="c-links">
           <a class="c-link" href="mailto:aman.saini17072003@gmail.com"><div class="c-icon">✉</div>aman.saini17072003@gmail.com</a>
           <a class="c-link" href="tel:+919584285241"><div class="c-icon">📞</div>+91-9584285241</a>
@@ -314,6 +326,8 @@
         <div class="s-row"><span class="s-key">LANGUAGES</span><span class="s-val">HINDI · ENGLISH</span></div>
         <div class="s-row"><span class="s-key">LOOKING FOR</span><span class="s-val g">OPEN TO WORK</span></div>
         <div class="s-row"><span class="s-key">GRAD YEAR</span><span class="s-val">2027</span></div>
+        <div class="s-row"><span class="s-key">GITHUB</span><span class="s-val"><a href="https://github.com/amansainii17" target="_blank" style="color:var(--cyan);text-decoration:none;">amansainii17</a></span></div>
+        <div class="s-row"><span class="s-key">INTERNSHIPS</span><span class="s-val o">4 COMPLETED</span></div>
       </div>
     </div>
   </div>
@@ -377,33 +391,98 @@ document.getElementById('pdfModal').addEventListener('click',function(e){
 let certData = [];
 const CARD_W = 320;
 
+// PDF modal state
+let _pdfDoc = null, _pdfPage = 1, _pdfTotal = 1;
+
 function openCertModal(src, title, isImage) {
-  const embed = document.getElementById('certModalEmbed');
-  let img = document.getElementById('certModalImg');
-  if (!img) {
-    img = document.createElement('img');
-    img.id = 'certModalImg';
-    img.style.cssText = 'width:100%;height:100%;object-fit:contain;border-radius:8px;display:none;';
-    embed.parentNode.insertBefore(img, embed);
-  }
-  if (isImage) {
-    embed.style.display = 'none';
-    img.src = src;
-    img.style.display = 'block';
-  } else {
-    img.style.display = 'none';
-    embed.style.display = 'block';
-    embed.src = src;
-  }
+  const modal = document.getElementById('certModal');
+  const imgEl = document.getElementById('certModalImg');
+  const canvas = document.getElementById('certModalCanvas');
+  const loader = document.getElementById('certModalLoader');
+  const nav = document.getElementById('certModalPageNav');
+
+  // Reset
+  imgEl.style.display = 'none'; imgEl.src = '';
+  canvas.style.display = 'none';
+  loader.style.display = 'flex';
+  nav.style.display = 'none';
+  _pdfDoc = null; _pdfPage = 1;
+
   document.getElementById('certModalDl').href = src;
+  document.getElementById('certModalDl').download = title;
   document.getElementById('certModalTitle').textContent = title;
-  document.getElementById('certModal').classList.add('open');
+  modal.classList.add('open');
+
+  if (isImage) {
+    imgEl.onload = () => { loader.style.display = 'none'; imgEl.style.display = 'block'; };
+    imgEl.onerror = () => { loader.style.display = 'none'; };
+    imgEl.src = src;
+  } else {
+    openPdfInModal(src);
+  }
 }
+
+function openPdfInModal(src) {
+  if (typeof pdfjsLib === 'undefined') {
+    document.getElementById('certModalLoader').innerHTML =
+      '<div style="color:#ff4444;font-family:Share Tech Mono,monospace;font-size:11px;text-align:center;padding:20px;">PDF.js not loaded.<br>Check internet connection.</div>';
+    return;
+  }
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const docSrc = src.startsWith('data:') ? {data: atob(src.split(',')[1])} : src;
+  pdfjsLib.getDocument(docSrc).promise.then(pdf => {
+    _pdfDoc = pdf;
+    _pdfTotal = pdf.numPages;
+    _pdfPage = 1;
+    renderModalPage(_pdfPage);
+    if (_pdfTotal > 1) {
+      document.getElementById('certModalPageNav').style.display = 'flex';
+    }
+  }).catch(err => {
+    document.getElementById('certModalLoader').innerHTML =
+      '<div style="color:#ff4444;font-family:Share Tech Mono,monospace;font-size:11px;text-align:center;padding:20px;">Could not load PDF.</div>';
+  });
+}
+
+function renderModalPage(pageNum) {
+  const canvas = document.getElementById('certModalCanvas');
+  const loader = document.getElementById('certModalLoader');
+  loader.style.display = 'flex';
+  canvas.style.display = 'none';
+  _pdfDoc.getPage(pageNum).then(page => {
+    const body = document.getElementById('certModalBody');
+    const W = body.clientWidth || window.innerWidth * 0.9;
+    const vp0 = page.getViewport({scale:1});
+    const scale = W / vp0.width;
+    const vp = page.getViewport({scale});
+    canvas.width = vp.width;
+    canvas.height = vp.height;
+    return page.render({canvasContext: canvas.getContext('2d'), viewport: vp}).promise;
+  }).then(() => {
+    loader.style.display = 'none';
+    canvas.style.display = 'block';
+    document.getElementById('certModalPageInfo').textContent = _pdfPage + ' / ' + _pdfTotal;
+  }).catch(() => {
+    loader.style.display = 'none';
+  });
+}
+
+function pdfPageChange(dir) {
+  const next = _pdfPage + dir;
+  if (!_pdfDoc || next < 1 || next > _pdfTotal) return;
+  _pdfPage = next;
+  renderModalPage(_pdfPage);
+}
+
 function closeCertModal() {
   document.getElementById('certModal').classList.remove('open');
-  document.getElementById('certModalEmbed').src = '';
-  const img = document.getElementById('certModalImg');
-  if (img) { img.style.display = 'none'; img.src = ''; }
+  document.getElementById('certModalImg').style.display = 'none';
+  document.getElementById('certModalImg').src = '';
+  document.getElementById('certModalCanvas').style.display = 'none';
+  document.getElementById('certModalLoader').style.display = 'flex';
+  document.getElementById('certModalPageNav').style.display = 'none';
+  _pdfDoc = null;
 }
 document.getElementById('certModal').addEventListener('click', function(e) {
   if (e.target === this) closeCertModal();

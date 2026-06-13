@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin — Aman Saini Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root{--bg:#050d14;--card:#0d1f2d;--cyan:#00f5ff;--green:#39ff14;--red:#ff4444;--border:rgba(0,245,255,0.15);--t1:#e0f4ff;--t2:#7ab8cc;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--t1);font-family:'Share Tech Mono',monospace;min-height:100vh;}
+
+  /* AUTH */
+  #authScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  .auth-box{background:var(--card);border:1px solid var(--green);border-radius:12px;padding:40px;width:90%;max-width:380px;text-align:center;box-shadow:0 0 40px rgba(57,255,20,0.15);}
+  .auth-box h1{font-family:'Orbitron',monospace;font-size:16px;color:var(--green);letter-spacing:3px;margin-bottom:8px;}
+  .auth-box p{font-size:11px;color:var(--t2);margin-bottom:24px;letter-spacing:1px;}
+  .auth-box input{width:100%;background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:6px;padding:12px 16px;color:var(--t1);font-family:'Share Tech Mono',monospace;font-size:13px;outline:none;margin-bottom:12px;letter-spacing:2px;text-align:center;}
+  .auth-box input:focus{border-color:var(--cyan);}
+  .auth-err{color:var(--red);font-size:11px;margin-top:4px;display:none;}
+
+  /* MAIN */
+  #mainScreen{display:none;max-width:900px;margin:0 auto;padding:30px 20px;}
+  .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;}
+  .top-bar h1{font-family:'Orbitron',monospace;font-size:18px;color:var(--cyan);letter-spacing:2px;}
+  .top-bar span{font-size:11px;color:var(--t2);}
+
+  /* BUTTONS */
+  .btn{padding:10px 20px;border-radius:6px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;border:1px solid;}
+  .btn-green{color:var(--green);border-color:var(--green);background:transparent;}
+  .btn-green:hover{background:rgba(57,255,20,0.1);}
+  .btn-cyan{color:var(--cyan);border-color:var(--cyan);background:transparent;}
+  .btn-cyan:hover{background:rgba(0,245,255,0.1);}
+  .btn-red{color:var(--red);border-color:var(--red);background:transparent;}
+  .btn-red:hover{background:rgba(255,68,68,0.1);}
+
+  /* UPLOAD SECTION */
+  .section{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:24px;}
+  .section-title{font-family:'Orbitron',monospace;font-size:12px;color:var(--cyan);letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+  .dropzone{border:2px dashed rgba(0,245,255,0.2);border-radius:8px;padding:36px 20px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:16px;}
+  .dropzone:hover,.dropzone.over{border-color:var(--cyan);background:rgba(0,245,255,0.03);}
+  .dropzone .icon{font-size:42px;margin-bottom:10px;}
+  .dropzone p{font-size:11px;color:var(--t2);letter-spacing:1px;}
+  .inp{width:100%;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--t1);font-family:'Share Tech Mono',monospace;font-size:12px;outline:none;margin-bottom:10px;}
+  .inp:focus{border-color:var(--cyan);}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .preview-box{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:12px;display:none;}
+  .preview-box img{width:100%;max-height:140px;object-fit:contain;border-radius:4px;}
+  .preview-box .fname{font-size:11px;color:var(--cyan);margin-bottom:8px;word-break:break-all;}
+
+  /* CERT LIST */
+  .cert-list{display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;}
+  .cert-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;transition:border-color 0.2s;}
+  .cert-row:hover{border-color:rgba(0,245,255,0.3);}
+  .cert-row .icon{font-size:20px;flex-shrink:0;}
+  .cert-row .info{flex:1;min-width:0;}
+  .cert-row .info .title{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .cert-row .info .sub{font-size:10px;color:var(--t2);margin-top:2px;}
+  .cert-row .actions{display:flex;gap:8px;flex-shrink:0;}
+
+  /* DOWNLOAD BAR */
+  .dl-bar{background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.3);border-radius:10px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .dl-bar p{font-size:11px;color:var(--t2);line-height:1.7;}
+  .dl-bar strong{color:var(--green);}
+
+  /* STATUS */
+  .status{font-size:11px;padding:8px 14px;border-radius:6px;margin-top:10px;display:none;}
+  .status.ok{background:rgba(57,255,20,0.08);color:var(--green);border:1px solid rgba(57,255,20,0.3);}
+  .status.err{background:rgba(255,68,68,0.08);color:var(--red);border:1px solid rgba(255,68,68,0.3);}
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:4px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:rgba(0,245,255,0.2);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="authScreen">
+  <div class="auth-box">
+    <h1>🔐 ADMIN PANEL</h1>
+    <p>AMAN SAINI · PORTFOLIO MANAGER</p>
+    <input type="password" id="passInput" placeholder="Enter Password" onkeydown="if(event.key==='Enter')checkAuth()"/>
+    <p class="auth-err" id="authErr">✕ WRONG PASSWORD</p>
+    <button class="btn btn-green" style="width:100%;margin-top:8px;" onclick="checkAuth()">UNLOCK →</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="mainScreen">
+  <div class="top-bar">
+    <div>
+      <h1>⚡ PORTFOLIO ADMIN</h1>
+      <span>Aman Saini · Certificate Manager</span>
+    </div>
+    <button class="btn btn-green" onclick="downloadZip()">⬇ DOWNLOAD UPDATED ZIP</button>
+  </div>
+
+  <!-- DOWNLOAD INSTRUCTIONS -->
+  <div class="dl-bar" style="margin-bottom:24px;">
+    <div>
+      <p>📋 <strong>How to add a certificate permanently:</strong></p>
+      <p>1. Upload certificate below → 2. Click <strong>DOWNLOAD UPDATED ZIP</strong> → 3. Redeploy on Vercel</p>
+    </div>
+    <span id="certCount" style="font-family:'Orbitron',monospace;font-size:22px;color:var(--green);"></span>
+  </div>
+
+  <!-- UPLOAD -->
+  <div class="section">
+    <div class="section-title">＋ ADD NEW CERTIFICATE</div>
+    <div id="dropZone" class="dropzone" onclick="document.getElementById('fileInp').click()" ondragover="dzOver(event)" ondragleave="dzLeave()" ondrop="dzDrop(event)">
+      <div class="icon">📂</div>
+      <p>DRAG & DROP  or  CLICK TO SELECT</p>
+      <p style="margin-top:4px;font-size:10px;color:#3a6a7a;">PDF · PNG · JPG</p>
+    </div>
+    <input type="file" id="fileInp" accept=".pdf,.png,.jpg,.jpeg" style="display:none" onchange="fileSelected(this.files[0])"/>
+
+    <div class="preview-box" id="previewBox">
+      <div class="fname" id="previewName"></div>
+      <img id="previewImg" src="" alt="" style="display:none;"/>
+    </div>
+
+    <div class="row">
+      <input class="inp" id="inpTitle" type="text" placeholder="Certificate Title *"/>
+      <input class="inp" id="inpIssuer" type="text" placeholder="Issuer / Organization *"/>
+    </div>
+    <div class="row">
+      <input class="inp" id="inpDate" type="text" placeholder="Date  e.g.  JUN 2026"/>
+      <input class="inp" id="inpIcon" type="text" placeholder="Icon emoji  e.g.  🏅"/>
+    </div>
+
+    <div id="uploadStatus" class="status"></div>
+    <button class="btn btn-green" style="width:100%;margin-top:4px;padding:13px;" onclick="addCert()">SAVE CERTIFICATE ✓</button>
+  </div>
+
+  <!-- CERT LIST -->
+  <div class="section">
+    <div class="section-title">📋 ALL CERTIFICATES <span style="color:var(--t2);font-size:10px;" id="listCount"></span></div>
+    <div class="cert-list" id="certList"></div>
+  </div>
+</div>
+
+<script>
+// ── EMBEDDED CERT DATA (same as portfolio) ──
+const CERT_BASE_JSON = '[{"title": "Python", "issuer": "Kaggle", "date": "MAY 2026", "icon": "🐍", "src": "certs/Certificate(Kaggle_Python).png"}, {"title": "Python Fullstack Developer Virtual Internship", "issuer": "AICTE × EduSkills", "date": "APR–JUN 2026", "icon": "🎓", "src": "certs/Internship(EduSkills_PythonFullStack).pdf"}, {"title": "Claude with the Anthropic API", "issuer": "Anthropic", "date": "MAR 2026", "icon": "🤖", "src": "certs/Certificate(Claude_API).pdf"}, {"title": "Claude Code in Action", "issuer": "Anthropic", "date": "MAR 2026", "icon": "💻", "src": "certs/Certificate(Claude_Code_Action).pdf"}, {"title": "Claude 101", "issuer": "Anthropic", "date": "MAR 2026", "icon": "⚡", "src": "certs/Certificate(Claude_101).pdf"}, {"title": "Python Essentials 1", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials1).pdf"}, {"title": "Python Essentials 2", "issuer": "Cisco / OpenEdg", "date": "MAR 2026", "icon": "🐍", "src": "certs/Certificate(PythonEssentials2).pdf"}, {"title": "AWS Cloud Quest — Generative AI Practitioner", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎮", "src": "certs/Certificate(AWS_CloudQuest_GenAI).pdf"}, {"title": "AWS Cloud Foundations Internship", "issuer": "SAGE University", "date": "JUL 2025", "icon": "🏫", "src": "certs/Certificate(AWS_Internship).pdf"}, {"title": "AWS — Fundamentals of ML & AI", "issuer": "Amazon Web Services", "date": "2025", "icon": "🧠", "src": "certs/Certificate(AWS_ML_Fundamentals).pdf"}, {"title": "AWS SimuLearn: Cloud Computing Essentials", "issuer": "Amazon Web Services", "date": "2025", "icon": "☁️", "src": "certs/Certificate(AWS_CloudEssentials).pdf"}, {"title": "AWS Certified Cloud Practitioner Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "📋", "src": "certs/Certificate(AWS_CloudPractitioner).pdf"}, {"title": "AWS Certified Developer — Associate Practice", "issuer": "Amazon Web Services", "date": "2025", "icon": "👨\u200d💻", "src": "certs/Certificate(AWS_Developer_Associate).pdf"}, {"title": "AWS Academy Graduate", "issuer": "Amazon Web Services", "date": "2025", "icon": "🎓", "src": "certs/Certificate(AWS).pdf"}, {"title": "Generative AI Certificate", "issuer": "NASSCOM FutureSkills", "date": "DEC 2025", "icon": "🚀", "src": "certs/Certificate(GenerativeAI).pdf"}, {"title": "Red Hat System Administration II (RH134)", "issuer": "Red Hat", "date": "DEC 2025", "icon": "🎩", "src": "certs/Certificate(RedHat_RH134).pdf"}, {"title": "Getting Started with Threat Intelligence", "issuer": "IBM SkillsBuild", "date": "DEC 2025", "icon": "🛡️", "src": "certs/Certificate(IBM_ThreatIntelligence).pdf"}, {"title": "MS Excel Powered by Microsoft", "issuer": "Simplilearn", "date": "DEC 2025", "icon": "📊", "src": "certs/Certificate(Simplilearn_Microsoft).pdf"}, {"title": "Power BI for Beginners", "issuer": "Simplilearn", "date": "MAR 2026", "icon": "📊", "src": "certs/Certificate(PowerBI).pdf"}, {"title": "Introduction to C++", "issuer": "Simplilearn SkillUp", "date": "MAY 2024", "icon": "⌨️", "src": "certs/Certificate(Cpp).pdf"}, {"title": "Web Development Internship", "issuer": "ApexPlanet Software", "date": "FEB 2026", "icon": "💼", "src": "certs/Internship(ApexPlanet).pdf"}, {"title": "AI-ML Virtual Internship", "issuer": "AICTE × Google", "date": "MAR 2026", "icon": "🤖", "src": "certs/Internship(AICTE_AIML).pdf"}, {"title": "AWS Solutions Architecture Job Simulation", "issuer": "Forage (AWS)", "date": "DEC 2025", "icon": "☁️", "src": "certs/Certificate(Forage_AWS).pdf"}, {"title": "Deloitte Technology Job Simulation", "issuer": "Forage (Deloitte)", "date": "DEC 2025", "icon": "💼", "src": "certs/Certificate(Forage_Deloitte).pdf"}]';
+const PORTFOLIO_FILES = {}; // will hold file name → arrayBuffer for new uploads
+
+const PASS = 'aman@2003';
+let certData = [];
+let newFiles = {}; // filename -> File object
+
+// ── AUTH ──
+function checkAuth() {
+  if (document.getElementById('passInput').value === PASS) {
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('mainScreen').style.display = 'block';
+    init();
+  } else {
+    const e = document.getElementById('authErr');
+    e.style.display = 'block';
+    setTimeout(() => e.style.display = 'none', 2000);
+  }
+}
+document.getElementById('passInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkAuth();
+});
+
+// ── INIT ──
+function init() {
+  certData = JSON.parse(CERT_BASE_JSON);
+  renderList();
+  document.getElementById('certCount').textContent = certData.length + ' CERTS';
+  document.getElementById('listCount').textContent = '(' + certData.length + ')';
+}
+
+// ── RENDER LIST ──
+function renderList() {
+  const list = document.getElementById('certList');
+  list.innerHTML = '';
+  certData.forEach((c, i) => {
+    const row = document.createElement('div');
+    row.className = 'cert-row';
+    row.innerHTML = `
+      <span class="icon">${c.icon || '🏅'}</span>
+      <div class="info">
+        <div class="title">${c.title}</div>
+        <div class="sub">${c.issuer} · ${c.date || ''} · <span style="color:rgba(0,245,255,0.5)">${c.src || 'no file'}</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-red" style="padding:5px 12px;font-size:9px;" onclick="deleteCert(${i})">DELETE</button>
+      </div>`;
+    list.appendChild(row);
+  });
+  document.getElementById('certCount').textContent = certData.length + ' CERTS';
+  document.getElementById('listCount').textContent = '(' + certData.length + ')';
+}
+
+// ── FILE DROP ──
+let selectedFile = null;
+function dzOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('over'); }
+function dzLeave() { document.getElementById('dropZone').classList.remove('over'); }
+function dzDrop(e) { e.preventDefault(); dzLeave(); if (e.dataTransfer.files[0]) fileSelected(e.dataTransfer.files[0]); }
+
+function fileSelected(file) {
+  selectedFile = file;
+  document.getElementById('previewName').textContent = '📎 ' + file.name;
+  document.getElementById('previewBox').style.display = 'block';
+  const img = document.getElementById('previewImg');
+  if (/\.(png|jpg|jpeg)$/i.test(file.name)) {
+    const reader = new FileReader();
+    reader.onload = e => { img.src = e.target.result; img.style.display = 'block'; };
+    reader.readAsDataURL(file);
+  } else { img.style.display = 'none'; }
+  // Auto fill title
+  if (!document.getElementById('inpTitle').value) {
+    document.getElementById('inpTitle').value = file.name
+      .replace(/\.(pdf|png|jpg|jpeg)$/i,'').replace(/[_\-]/g,' ').trim();
+  }
+}
+
+// ── ADD CERT ──
+function addCert() {
+  const title = document.getElementById('inpTitle').value.trim();
+  const issuer = document.getElementById('inpIssuer').value.trim();
+  const date = document.getElementById('inpDate').value.trim().toUpperCase();
+  const icon = document.getElementById('inpIcon').value.trim() || '🏅';
+  const status = document.getElementById('uploadStatus');
+
+  if (!title || !issuer || !selectedFile) {
+    showStatus('uploadStatus', '⚠ Fill all required fields and select a file', false);
+    return;
+  }
+
+  const ext = selectedFile.name.split('.').pop();
+  const safeName = title.replace(/[^a-zA-Z0-9]/g, '_') + '.' + ext;
+  const src = 'certs/' + safeName;
+
+  // Store file for zip
+  newFiles[safeName] = selectedFile;
+
+  certData.unshift({ title, issuer, date: date || 'RECENT', icon, src });
+  renderList();
+  showStatus('uploadStatus', '✓ Certificate added! Download ZIP and redeploy Vercel.', true);
+
+  // Reset form
+  selectedFile = null;
+  ['inpTitle','inpIssuer','inpDate','inpIcon'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('previewBox').style.display = 'none';
+  document.getElementById('fileInp').value = '';
+}
+
+// ── DELETE ──
+function deleteCert(i) {
+  if (!confirm('Delete "' + certData[i].title + '"?')) return;
+  certData.splice(i, 1);
+  renderList();
+}
+
+// ── DOWNLOAD ZIP ──
+async function downloadZip() {
+  const btn = document.querySelector('.btn-green');
+  btn.textContent = '⏳ BUILDING ZIP...';
+  btn.disabled = true;
+
+  try {
+    const zip = new JSZip();
+
+    // Fetch original portfolio zip to get all existing files
+    const resp = await fetch('./');
+    // We'll just rebuild from what we know
+
+    // Add updated certificate.json
+    zip.file('portfolio-main/json/certificate.json', JSON.stringify(certData, null, 2));
+
+    // Add new cert files
+    for (const [name, file] of Object.entries(newFiles)) {
+      const buf = await file.arrayBuffer();
+      zip.file('portfolio-main/certs/' + name, buf);
+    }
+
+    // Fetch and add index.html with updated inline cert data
+    const idxResp = await fetch('./index.html');
+    let idxText = await idxResp.text();
+    // Update inline CERT_BASE in index.html
+    idxText = idxText.replace(
+      /const CERT_BASE = \[[\s\S]*?\];/,
+      'const CERT_BASE = ' + JSON.stringify(certData) + ';'
+    );
+    zip.file('portfolio-main/index.html', idxText);
+
+    // Add admin.html itself
+    const adminResp = await fetch('./admin.html');
+    const adminText = await adminResp.text();
+    zip.file('portfolio-main/admin.html', adminText);
+
+    const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'aman-saini-final.zip';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    btn.textContent = '✓ DOWNLOADED!';
+    setTimeout(() => { btn.textContent = '⬇ DOWNLOAD UPDATED ZIP'; btn.disabled = false; }, 3000);
+  } catch(err) {
+    btn.textContent = '⬇ DOWNLOAD UPDATED ZIP';
+    btn.disabled = false;
+    alert('Error: ' + err.message);
+  }
+}
+
+function showStatus(id, msg, ok) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'status ' + (ok ? 'ok' : 'err');
+  el.style.display = 'block';
+  if (ok) setTimeout(() => el.style.display = 'none', 4000);
+}
+</script>
+</body>
+</html>

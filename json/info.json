@@ -1,19 +1,19 @@
 {
     "name": "Aman Saini",
-    "position": "Developer & AI Builder",
+    "position": "Python Developer | AI & Full-Stack Developer",
     "des": [
         "CSE student at Sage University Indore (2023–2027), 4th year — building AI-powered web apps.",
-        "Exploring the intersection of machine learning and full-stack development.",
-        "Currently leveling up in Python, React, and Generative AI."
+        "Hands-on experience in Python, full-stack development, and cloud technologies.",
+        "Currently leveling up in Generative AI, Django, and cloud-native solutions."
     ],
     "experience": "Fresher",
-    "projects-shipped": "2+",
-    "internships": "3+",
-    "certificates": "10+",
+    "projects-shipped": "4+",
+    "internships": "4+",
+    "certificates": "24+",
     "grad-year": "2027",
     "skills": [
-        "Python", "JavaScript", "C++", "React.js", "HTML", "CSS",
-        "Flask", "MySQL", "SQLite", "Git", "GitHub", "AWS", "Generative AI"
+        "Python", "JavaScript", "HTML", "CSS",
+        "Flask", "Django", "MySQL", "Git", "GitHub", "VS Code", "Linux", "AWS", "Generative AI"
     ],
     "location": [
         "Indore, Madhya Pradesh, India",
@@ -31,43 +31,55 @@
         "email": "aman.saini17072003@gmail.com",
         "phone": "+91-9584285241",
         "linkedin": "",
-        "github": ""
+        "github": "https://github.com/amansainii17"
     },
     "tags": [
-        "Developer",
+        "Python Developer",
         "AI Builder",
-        "Problem Solver",
+        "Full-Stack Developer",
         "Open to Work"
     ],
     "article": {
-        "para1": "I am a CSE student with a strong interest in building AI-powered web applications and exploring the intersection of machine learning and full-stack development. I enjoy working on real-world problems and turning ideas into functional products.",
-        "para2": "My experience spans developing AI exam generators, language translation tools, and web applications. I continuously explore new technologies and improve my skills through internships, projects, and certifications in AI, cloud, and web development."
+        "para1": "Aspiring Python and Software Developer with hands-on experience in AI-powered web applications, full-stack development, and cloud technologies. I enjoy turning real-world problems into functional, scalable software solutions.",
+        "para2": "My work spans AI-powered exam generators (ExamForge), bus booking apps (BusYatra), language translation tools, and a personal portfolio — all built and deployed with modern tools. I continuously grow through internships, certifications, and open-source contributions."
     },
     "skill-deep": [
-        { "skill": "Python",      "lvl": "Advanced",     "pro": 4, "years": "2+ years", "pct": 82 },
+        { "skill": "Python",      "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 85 },
         { "skill": "JavaScript",  "lvl": "Intermediate", "pro": 3, "years": "1-2 years", "pct": 70 },
-        { "skill": "C++",         "lvl": "Intermediate", "pro": 3, "years": "1-2 years", "pct": 65 },
-        { "skill": "React.js",    "lvl": "Beginner",     "pro": 2, "years": "< 1 year",  "pct": 60 },
-        { "skill": "HTML / CSS",  "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 78 },
-        { "skill": "Gen AI / ML", "lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 55 }
+        { "skill": "HTML / CSS",  "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 80 },
+        { "skill": "Flask/Django","lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 68 },
+        { "skill": "MySQL",       "lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 65 },
+        { "skill": "Gen AI / ML", "lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 60 }
     ],
     "career-history": [
+        {
+            "position": "Python Full Stack Developer Intern",
+            "company": "AICTE × EduSkills Academy",
+            "date": "APR 2026 — JUN 2026 (8 WEEKS)",
+            "des": "Completed an 8-week virtual internship focused on Python full-stack development and web application development, covering Django, SQL, Git, and Bootstrap.",
+            "work": [
+                "Python full-stack web development with Django",
+                "SQL database querying and management",
+                "Git & version control, Bootstrap responsive design",
+                "8-week AICTE-backed virtual program"
+            ]
+        },
         {
             "position": "Web Development Intern",
             "company": "ApexPlanet Software Pvt. Ltd.",
             "date": "DEC 2025 — FEB 2026",
-            "des": "Virtual internship covering full front-end web development using HTML, CSS, and JavaScript. Built practical projects during the 10-week program.",
+            "des": "Virtual internship covering full front-end web development using HTML, CSS, and JavaScript. Built practical projects and gained real-world development experience.",
             "work": [
                 "Built multiple front-end web projects",
                 "Worked with HTML, CSS, and JavaScript",
-                "Completed 10-week virtual program"
+                "Completed structured virtual program"
             ]
         },
         {
             "position": "AI & ML Virtual Intern",
             "company": "AICTE–EduSkills × Google for Developers",
             "date": "2024 — 2025 (10 WEEKS)",
-            "des": "Gained hands-on experience in machine learning concepts and applications through this government-backed virtual internship program supported by Google for Developers.",
+            "des": "Gained hands-on experience in machine learning concepts and applications through this government-backed virtual internship supported by Google for Developers.",
             "work": [
                 "Hands-on ML concepts and applications",
                 "Government-backed program with Google support",
@@ -87,15 +99,15 @@
         }
     ],
     "terminal": {
-        "whoami": "Aman Saini, Developer & AI Builder",
+        "whoami": "Aman Saini, Python Developer & AI Builder",
         "skill": [
-            "Python, JavaScript, React.js, Flask",
-            "HTML, CSS, Gen AI, AWS, Git"
+            "Python, JavaScript, Flask, Django",
+            "HTML, CSS, MySQL, AWS, Git, Linux"
         ],
         "stat": [
-            "3+ internships completed",
-            "10+ certifications earned",
-            "2 projects shipped"
+            "4+ internships completed",
+            "24+ certifications earned",
+            "4 projects shipped"
         ],
         "hire-me": [
             "✓ Open to internships",
@@ -104,9 +116,9 @@
         ],
         "animation-tag": [
             "cd ~/projects",
-            "python run_ai.py",
+            "python manage.py runserver",
             "git push origin main",
-            "npm start"
+            "pip install everything"
         ]
     },
     "let-work": {
