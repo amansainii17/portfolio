@@ -46,8 +46,7 @@
     "skill-deep": [
         { "skill": "Python",      "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 85 },
         { "skill": "JavaScript",  "lvl": "Intermediate", "pro": 3, "years": "1-2 years", "pct": 70 },
-        { "skill": "HTML",        "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 85 },
-        { "skill": "CSS",         "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 75 },
+        { "skill": "HTML / CSS",  "lvl": "Advanced",     "pro": 4, "years": "2+ years",  "pct": 80 },
         { "skill": "Flask/Django","lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 68 },
         { "skill": "MySQL",       "lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 65 },
         { "skill": "Gen AI / ML", "lvl": "Intermediate", "pro": 3, "years": "1 year",    "pct": 60 }
